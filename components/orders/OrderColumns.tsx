@@ -102,7 +102,7 @@ export const columns: ColumnDef<OrderType>[] = [
     accessorKey: "createdAt",
     header: "CreatedAt",
     cell: ({ row }) => {
-      const createdAt = row.original.createdAt;
+      const createdAt = row.original.createdAt
       return (
         <p className="text-sm text-gray-600 italic">
           {createdAt
@@ -110,10 +110,13 @@ export const columns: ColumnDef<OrderType>[] = [
                 year: "numeric",
                 month: "long",
                 day: "numeric",
+                hour: "2-digit",
+                minute: "2-digit",
+                hour12: false,
               }).format(new Date(createdAt))
             : "تاريخ غير متوفر"}
         </p>
-      );
+      )
     },
   },
   {
