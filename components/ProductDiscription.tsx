@@ -21,84 +21,102 @@ const ProductDiscription = () => {
     visible: { opacity: 1, y: 0, transition: { duration: 0.8 } },
   }
 
+  const staggerChildren = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.2,
+      },
+    },
+  }
+
   return (
     <div
       ref={ref}
-      className="bg-gradient-to-r from-[#0E1116] to-[#2F343A] text-white p-8 rounded-lg shadow-lg flex-col justify-center items-center"
+      className="bg-gradient-to-r from-[#0E1116] to-[#2F343A] text-white py-16 px-4 sm:px-6 lg:px-8 rounded-lg shadow-2xl"
     >
-      <motion.h1
-        initial="hidden"
-        animate={controls}
-        variants={fadeInUp}
-        className="text-4xl font-bold mb-6 text-center bg-clip-text text-transparent bg-gradient-to-r from-yellow-400 to-yellow-600"
-      >
-        وصف المنتج
-      </motion.h1>
-      <motion.p initial="hidden" animate={controls} variants={fadeInUp} className="text-lg leading-relaxed mb-6">
-        هذا الحذاء الرياضي مصمم بعناية ليوفر لك الراحة والأناقة طوال اليوم. يتميز بتصميم عصري يتماشى مع جميع الإطلالات
-        اليومية، سواء كانت كاجوال أو رياضية. مصنوع من خامات عالية الجودة تضمن التهوية والمتانة، مع وسادة قدم ناعمة
-        لتوفير دعم مثالي لراحة قدميك.
-      </motion.p>
-      <motion.div
-        initial="hidden"
-        animate={controls}
-        variants={fadeInUp}
-        className="bg-[#1A1D21] p-6 rounded-md shadow-lg flex-col justify-center"
-      >
-        <h2 className="text-2xl font-semibold mb-4 text-yellow-400">المواصفات:</h2>
-        <ul className="space-y-2 text-gray-300">
-          {[
-            "الخامة: نسيج شبكي يسمح بتهوية القدمين",
-            "النعل: مطاطي مضاد للانزلاق لثبات أكبر",
-            "اللون: متوفر بالآلوان التي في الصورة",
-          ].map((item, index) => (
-            <motion.li
-              key={index}
-              initial="hidden"
-              animate={controls}
-              variants={fadeInUp}
-              className="flex items-center gap-2"
-            >
-              <span>✔️</span> {item}
-            </motion.li>
-          ))}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 my-4">
+      <div className="max-w-7xl mx-auto">
+        <motion.h1
+          initial="hidden"
+          animate={controls}
+          variants={fadeInUp}
+          className="text-4xl sm:text-5xl font-bold mb-8 text-center bg-clip-text text-transparent bg-gradient-to-r from-yellow-400 to-yellow-600"
+        >
+          وصف المنتج
+        </motion.h1>
+        <motion.p
+          initial="hidden"
+          animate={controls}
+          variants={fadeInUp}
+          className="text-lg sm:text-xl leading-relaxed mb-12 text-center max-w-3xl mx-auto"
+        >
+          هذا الحذاء الرياضي مصمم بعناية ليوفر لك الراحة والأناقة طوال اليوم. يتميز بتصميم عصري يتماشى مع جميع الإطلالات
+          اليومية، سواء كانت كاجوال أو رياضية. مصنوع من خامات عالية الجودة تضمن التهوية والمتانة، مع وسادة قدم ناعمة
+          لتوفير دعم مثالي لراحة قدميك.
+        </motion.p>
+        <motion.div
+          initial="hidden"
+          animate={controls}
+          variants={staggerChildren}
+          className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16"
+        >
+          <motion.div variants={fadeInUp} className="bg-[#1A1D21] p-6 rounded-xl shadow-lg">
+            <h2 className="text-2xl font-semibold mb-6 text-yellow-400">المواصفات:</h2>
+            <ul className="space-y-4 text-gray-300">
+              {[
+                "الخامة: نسيج شبكي يسمح بتهوية القدمين",
+                "النعل: مطاطي مضاد للانزلاق لثبات أكبر",
+                "اللون: متوفر بالآلوان التي في الصورة",
+                "المقاسات: من 39 إلى 44",
+              ].map((item, index) => (
+                <motion.li key={index} variants={fadeInUp} className="flex items-center gap-3">
+                  <span className="text-yellow-400 text-xl">✔</span> {item}
+                </motion.li>
+              ))}
+            </ul>
+          </motion.div>
+          <motion.div variants={fadeInUp} className="grid grid-cols-2 gap-4">
             <Image
               src="/images/4.jpg"
               width={300}
               height={300}
               alt="product"
-              className="w-full h-auto rounded-lg shadow-xl object-cover relative cursor-pointer"
+              className="w-full h-auto rounded-lg shadow-xl object-cover relative cursor-pointer transform transition duration-500 hover:scale-105"
             />
             <Image
               src="/images/5.jpg"
               width={300}
               height={300}
               alt="product detail"
-              className="w-full h-auto rounded-lg shadow-xl object-cover relative cursor-pointer"
+              className="w-full h-auto rounded-lg shadow-xl object-cover relative cursor-pointer transform transition duration-500 hover:scale-105"
             />
+          </motion.div>
+        </motion.div>
+        <motion.div initial="hidden" animate={controls} variants={fadeInUp} className="mb-16">
+          <h2 className="text-3xl font-semibold mb-6 text-center text-yellow-400">شاهد الفيديو التوضيحي</h2>
+          <div className="aspect-w-16 aspect-h-9 rounded-xl overflow-hidden shadow-2xl">
+            <iframe
+              className="w-full h-full"
+              src="https://www.youtube.com/embed/dQw4w9WgXcQ"
+              title="Product Video"
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+            ></iframe>
           </div>
-          <motion.li initial="hidden" animate={controls} variants={fadeInUp} className="flex items-center gap-2">
-            <span>✔️</span> المقاسات: من 39 إلى 44
-          </motion.li>
-        </ul>
-      </motion.div>
-      <motion.div initial="hidden" animate={controls} variants={fadeInUp} className="mt-8">
-        <h2 className="text-2xl font-semibold mb-4 text-yellow-400">شاهد الفيديو التوضيحي</h2>
-        <div className="aspect-w-16 aspect-h-9">
-          <iframe
-            className="w-full h-full rounded-lg shadow-xl"
-            src="https://www.youtube.com/embed/dQw4w9WgXcQ"
-            title="Product Video"
-            frameBorder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowFullScreen
-          ></iframe>
-        </div>
-      </motion.div>
-      <motion.div initial="hidden" animate={controls} variants={fadeInUp} className="text-center mt-8">
-        <p className="text-lg text-gray-300">اختر هذا الحذاء ليكون رفيقك المثالي في التنقل والأناقة!</p>
-      </motion.div>
+        </motion.div>
+        <motion.div initial="hidden" animate={controls} variants={fadeInUp} className="text-center">
+          <p className="text-xl text-gray-300 mb-8">اختر هذا الحذاء ليكون رفيقك المثالي في التنقل والأناقة!</p>
+          <motion.button
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            className="bg-gradient-to-r from-yellow-400 to-yellow-600 text-black font-bold py-3 px-8 rounded-full text-lg shadow-lg hover:shadow-xl transition duration-300"
+          >
+            اطلب الآن
+          </motion.button>
+        </motion.div>
+      </div>
     </div>
   )
 }
