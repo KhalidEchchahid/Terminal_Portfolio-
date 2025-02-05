@@ -8,7 +8,7 @@ const ProductDiscription = () => {
   const controls = useAnimation();
   const [ref, inView] = useInView({
     triggerOnce: true, // Animation triggers only once
-    threshold: 0.2,    // Trigger when 20% of the component is visible
+    threshold: 0.2, // Trigger when 20% of the component is visible
   });
 
   // Start animation when inView is true
@@ -42,10 +42,10 @@ const ProductDiscription = () => {
         variants={fadeInUp}
         className="text-lg leading-relaxed mb-6"
       >
-        هذا الحذاء الرياضي مصمم بعناية ليوفر لك الراحة والأناقة طوال اليوم. يتميز
-        بتصميم عصري يتماشى مع جميع الإطلالات اليومية، سواء كانت كاجوال أو رياضية.
-        مصنوع من خامات عالية الجودة تضمن التهوية والمتانة، مع وسادة قدم ناعمة
-        لتوفير دعم مثالي لراحة قدميك.
+        هذا الحذاء الرياضي مصمم بعناية ليوفر لك الراحة والأناقة طوال اليوم.
+        يتميز بتصميم عصري يتماشى مع جميع الإطلالات اليومية، سواء كانت كاجوال أو
+        رياضية. مصنوع من خامات عالية الجودة تضمن التهوية والمتانة، مع وسادة قدم
+        ناعمة لتوفير دعم مثالي لراحة قدميك.
       </motion.p>
       <motion.div
         initial="hidden"
@@ -53,7 +53,9 @@ const ProductDiscription = () => {
         variants={fadeInUp}
         className="bg-[#1A1D21] p-6 rounded-md shadow-lg flex-col justify-center"
       >
-        <h2 className="text-2xl font-semibold mb-4 text-yellow-400">المواصفات:</h2>
+        <h2 className="text-2xl font-semibold mb-4 text-yellow-400">
+          المواصفات:
+        </h2>
         <ul className="space-y-2 text-gray-300">
           {[
             "الخامة: نسيج شبكي يسمح بتهوية القدمين",
@@ -71,7 +73,7 @@ const ProductDiscription = () => {
             </motion.li>
           ))}
           <Image
-            src="/images/shoes3.jpg"
+            src="/images/4.jpg"
             width={300}
             height={300}
             alt="product"
