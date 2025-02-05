@@ -16,7 +16,7 @@ const product = {
     "/images/7.jpg",
   ],
   colors: ["الأبيض بالأسود", "الابيض بالازرق"],
-  sizes: ["39", "40", "41", "42", "43", "44"],
+  sizes: ["40", "41", "42", "43", "44"],
   availableStock: 50,
   sku: "KANDRISSI-J001",
 };
