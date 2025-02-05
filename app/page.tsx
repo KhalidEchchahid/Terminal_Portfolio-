@@ -1,4 +1,4 @@
-import ProductPageContent from "@/components/ProductPageContent"
+import ProductPageContent from "@/components/ProductPageContent";
 
 // Static data
 const product = {
@@ -14,14 +14,12 @@ const product = {
     "/images/5.jpg",
     "/images/6.jpg",
     "/images/7.jpg",
-    "/images/8.jpg",
-    "/images/9.jpg",
   ],
-  colors: ["الاسود بالرمادي", "الابيض بالازرق"],
+  colors: ["الأبيض بالأسود", "الابيض بالازرق"],
   sizes: ["39", "40", "41", "42", "43", "44"],
   availableStock: 50,
   sku: "KANDRISSI-J001",
-}
+};
 
 const reviews = [
   { id: 1, rating: 5, text: "وصلتني السبرديلة، داكشي ناضي شكرا أخي👍" },
@@ -35,13 +33,12 @@ const reviews = [
     rating: 5,
     text: "صافي أخي راه وصلتني لكموند، إلكان شي جديد خبرني👍",
   },
-]
+];
 
 // This will be statically rendered at build time
 export default function Page() {
-  return <ProductPageContent product={product} reviews={reviews} />
+  return <ProductPageContent product={product} reviews={reviews} />;
 }
 
 // Ensure static rendering
-export const dynamic = "force-static"
-
+export const dynamic = "force-static";
