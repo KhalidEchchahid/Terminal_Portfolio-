@@ -112,10 +112,10 @@ const ProductDiscription = () => {
           <h2 className="text-3xl font-semibold mb-6 text-center text-yellow-400">
             شاهد الفيديو التوضيحي
           </h2>
-          <div className="aspect-w-16 aspect-h-9 rounded-xl overflow-hidden shadow-2xl">
+          <div className="aspect-w-16 aspect-h-9 rounded-xl overflow-hidden shadow-2xl flex justify-center items-start">
             <iframe
-              className="w-full h-full"
-              src="https://www.youtube.com/embed/dQw4w9WgXcQ"
+              className="w-96 h-full"
+              src="https://www.youtube.com/embed/62pGPKxmlTw"
               title="Product Video"
               frameBorder="0"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"

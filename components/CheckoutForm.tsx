@@ -1,34 +1,45 @@
-"use client"
+"use client";
 
-import type React from "react"
-import { useState } from "react"
-import { z } from "zod"
-import { useForm } from "react-hook-form"
-import { zodResolver } from "@hookform/resolvers/zod"
-import { useRouter } from "next/navigation"
-import { motion } from "framer-motion"
-import { Form, FormControl, FormField, FormItem, FormMessage } from "./ui/form"
-import { Input } from "./ui/input"
-import { createOrder } from "@/lib/actions/order.action"
+import type React from "react";
+import { useState } from "react";
+import { z } from "zod";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useRouter } from "next/navigation";
+import { motion } from "framer-motion";
+import { Form, FormControl, FormField, FormItem, FormMessage } from "./ui/form";
+import { Input } from "./ui/input";
+import { createOrder } from "@/lib/actions/order.action";
 
 const formSchema = z.object({
-  fullname: z.string().min(2, "الاسم الكامل مطلوب").max(50, "الاسم الكامل يجب ألا يتجاوز 50 حرفًا"),
-  phone: z.string().min(10, "رقم الهاتف مطلوب").max(13, "رقم الهاتف يجب أن يكون بين 10 و13 رقمًا"),
+  fullname: z
+    .string()
+    .min(2, "الاسم الكامل مطلوب")
+    .max(50, "الاسم الكامل يجب ألا يتجاوز 50 حرفًا"),
+  phone: z
+    .string()
+    .min(10, "رقم الهاتف مطلوب")
+    .max(13, "رقم الهاتف يجب أن يكون بين 10 و13 رقمًا"),
   city: z.string().min(1, "المدينة مطلوبة"),
-})
+});
 
 interface Props {
-  selectedColor: string
-  selectedSize: string
-  quantity: number
-  price: number
+  selectedColor: string;
+  selectedSize: string;
+  quantity: number;
+  price: number;
 }
 
-const CheckoutForm = ({ selectedColor, selectedSize, quantity, price }: Props) => {
-  const router = useRouter()
-  const [isSubmitting, setIsSubmitting] = useState(false)
-  const [error, setError] = useState("")
-  const totalAmount = price * quantity
+const CheckoutForm = ({
+  selectedColor,
+  selectedSize,
+  quantity,
+  price,
+}: Props) => {
+  const router = useRouter();
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [message, setMessage] = useState("");
+  const totalAmount = price * quantity;
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -36,16 +47,16 @@ const CheckoutForm = ({ selectedColor, selectedSize, quantity, price }: Props) =
       phone: "",
       city: "",
     },
-  })
+  });
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
-    setIsSubmitting(true)
-    setError("")
+    setIsSubmitting(true);
+    setMessage("");
 
     if (selectedColor === "" || selectedSize === "") {
-      setError("يرجى اختيار اللون والحجم قبل متابعة الطلب.")
-      setIsSubmitting(false)
-      return
+      setMessage("يرجى اختيار اللون والحجم قبل متابعة الطلب.");
+      setIsSubmitting(false);
+      return;
     }
 
     try {
@@ -58,30 +69,37 @@ const CheckoutForm = ({ selectedColor, selectedSize, quantity, price }: Props) =
         shippingAdress: "",
         size: selectedSize,
         quantity,
-      })
+      });
 
-      router.push("/thanks")
+      router.push("/thanks");
     } catch (error) {
-      console.log("[checkout_post]", error)
-      setError("حدث خطأ ما ، يرجى المحاولة مرة أخرى")
+      console.log("[checkout_post]", error);
+      setMessage("حدث خطأ ما ، يرجى المحاولة مرة أخرى");
     } finally {
-      setIsSubmitting(false)
+      setIsSubmitting(false);
     }
-  }
+  };
 
   const handleKeyPress = (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (event.key === "Enter") {
-      event.preventDefault()
+      event.preventDefault();
     }
-  }
+  };
 
   return (
     <div className="flex items-start justify-center mb-10 px-4" id="order">
       <div className="w-full max-w-lg pt-6">
-        <h1 className="text-3xl font-bold mb-8 text-center text-white">للطلب إملأ الخانات أسفله</h1>
+        <h1 className="text-3xl font-bold mb-4 text-center text-white">
+          للطلب إملأ الخانات أسفله
+        </h1>
+        <h2 className="text-xl font-semibold mb-8 text-center text-yellow-400">
+          بعد اختيار اللون والحجم
+        </h2>
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-            {error && <div className="bg-red-100 text-red-700 p-3 rounded-lg mb-4 text-center">{error}</div>}
+            {message && (
+              <p className="text-yellow-400 text-center mb-4">{message}</p>
+            )}
             <FormField
               control={form.control}
               name="fullname"
@@ -178,8 +196,7 @@ const CheckoutForm = ({ selectedColor, selectedSize, quantity, price }: Props) =
         </Form>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default CheckoutForm
-
+export default CheckoutForm;
