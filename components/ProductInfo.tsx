@@ -47,7 +47,7 @@ const ProductInfo = ({
 
       {colors.length > 0 && (
         <div className="mt-6">
-          <h2 className="text-lg font-semibold text-gray-200">الألوان:</h2>
+          <h2 className="text-lg font-semibold text-gray-200">اضغط على اللون:</h2>
           <div className="flex flex-wrap gap-2 mt-2">
             {colors.map((color, index) => (
               <button
@@ -68,7 +68,7 @@ const ProductInfo = ({
 
       {sizes.length > 0 && (
         <div className="mt-4">
-          <h2 className="text-lg font-semibold text-gray-200">الأحجام:</h2>
+          <h2 className="text-lg font-semibold text-gray-200">اضغط على الحجم:</h2>
           <div className="flex gap-2 mt-2">
             {sizes.map((size, index) => (
               <button
