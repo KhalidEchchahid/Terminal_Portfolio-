@@ -4,7 +4,7 @@ import ProductPageContent from "@/components/ProductPageContent";
 const product = {
   id: 1,
   name: "متوفر لاي نوع من الانشطة",
-  price: 249,
+  price: 229,
   discount: 350,
   images: [
     "/images/1.jpg",

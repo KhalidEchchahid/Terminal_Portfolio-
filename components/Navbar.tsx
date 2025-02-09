@@ -5,7 +5,7 @@ const Navbar = () => {
   return (
     <div className="bg-gradient-to-r from-yellow-400 to-yellow-600 text-black py-3 px-6 shadow-md flex justify-around items-center">
       <div className="text-lg font-semibold ">
-        🎉التوصيل بالمجان , و الدفع عند الاستلام! 
+        🎉السعر يشمل التوصيل ✨ 🚛 , و الدفع عند الاستلام!
       </div>
       {/* <div className="flex items-center space-x-4">
         <Link
