@@ -1,6 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { Phone, Facebook } from "lucide-react";
+import { Phone, Facebook, Instagram } from "lucide-react";
 import Link from "next/link";
 
 const Footer: React.FC = () => {
@@ -31,6 +31,15 @@ const Footer: React.FC = () => {
                   className="text-white hover:text-yellow-400 "
                 >
                   <Facebook className="w-6 h-6 " />
+                </Link>
+              </motion.div>
+              <motion.div whileHover={{ scale: 1.2 }} whileTap={{ scale: 0.8 }}>
+                <Link
+                  href="https://www.instagram.com/me3roufshoes?igsh=YzljYTk1ODg3Zg=="
+                  target="_blank"
+                  className="text-white hover:text-yellow-400 "
+                >
+                  <Instagram className="w-6 h-6 " />
                 </Link>
               </motion.div>
             </div>

@@ -77,7 +77,7 @@ const Gallery: React.FC<GalleryProps> = ({ images }) => {
   };
 
   return (
-    <div className="max-w-2xl mx-auto px-2">
+    <div className="max-w-2xl mx-auto px-3">
       <div className="relative mb-4">
         <Slider
           {...mainSettings}
