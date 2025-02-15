@@ -51,10 +51,12 @@ const ProductDiscription = () => {
           variants={fadeInUp}
           className="text-lg sm:text-xl leading-relaxed mb-12 text-center max-w-3xl mx-auto"
         >
-          هذا الحذاء الرياضي مصمم بعناية ليوفر لك الراحة والأناقة طوال اليوم.
-          يتميز بتصميم عصري يتماشى مع جميع الإطلالات اليومية، سواء كانت كاجوال
-          أو رياضية. مصنوع من خامات عالية الجودة تضمن التهوية والمتانة، مع وسادة
-          قدم ناعمة لتوفير دعم مثالي لراحة قدميك.
+          حذاء أنيق ومتين مصمم ليتناسب مع كافة احتياجاتك اليومية والمناسبات
+          الرسمية. تم تصنيعه من خامات فاخرة وعالية الجودة تضمن مقاومة طويلة
+          الأمد لعوامل التآكل، مع نعل مبطن يوفر راحة فائقة وامتصاصاً ممتازاً
+          للصدمات. يتميز الحذاء بتصميم عصري وأنيق يعكس الذوق الرفيع، مع لمسات
+          دقيقة تضفي جمالاً استثنائياً. سواء كنت تسعى للأناقة في العمل أو الراحة
+          في النزهات اليومية، فإن هذا الحذاء هو الخيار المثالي للتميز والثقة.
         </motion.p>
         <motion.div
           initial="hidden"
@@ -66,12 +68,12 @@ const ProductDiscription = () => {
             variants={fadeInUp}
             className="bg-[#1A1D21] p-6 rounded-xl shadow-lg"
           >
-            <h2 className="text-2xl font-semibold mb-6 text-yellow-400">
-              المواصفات:
+            <h2 className="text-2xl font-semibold mb-6 text-yellow-400 text-center ">
+              المواصفات
             </h2>
             <ul className="space-y-4 text-gray-300">
               {[
-                "الخامة: نسيج شبكي يسمح بتهوية القدمين",
+                "راحة ممتازة طوال اليوم",
                 "النعل: مطاطي مضاد للانزلاق لثبات أكبر",
                 "اللون: متوفر بالآلوان التي في الصورة",
                 "المقاسات: من 40 إلى 44",
@@ -86,16 +88,23 @@ const ProductDiscription = () => {
               ))}
             </ul>
           </motion.div>
-          <motion.div variants={fadeInUp} className="grid grid-cols-2 gap-4">
+          <motion.div variants={fadeInUp} className="grid grid-cols-1 gap-4">
             <Image
-              src="/images/4.jpg"
+              src="/images/5.jpg"
               width={300}
               height={300}
               alt="product"
               className="w-full h-auto rounded-lg shadow-xl object-cover relative cursor-pointer transform transition duration-500 hover:scale-105"
             />
             <Image
-              src="/images/5.jpg"
+              src="/images/6.jpg"
+              width={300}
+              height={300}
+              alt="product detail"
+              className="w-full h-auto rounded-lg shadow-xl object-cover relative cursor-pointer transform transition duration-500 hover:scale-105"
+            />
+            <Image
+              src="/images/11.jpg"
               width={300}
               height={300}
               alt="product detail"
@@ -115,9 +124,8 @@ const ProductDiscription = () => {
           <div className="aspect-w-16 aspect-h-9 rounded-xl overflow-hidden shadow-2xl flex justify-center items-start">
             <iframe
               className="w-96 h-full"
-              src="https://www.youtube.com/embed/dmwwOZaeaec"
+              src="https://www.youtube.com/embed/KhB9C9_cvC0"
               title="Product Video"
-              frameBorder="0"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowFullScreen
             ></iframe>
