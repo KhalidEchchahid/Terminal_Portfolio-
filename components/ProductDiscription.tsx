@@ -51,12 +51,10 @@ const ProductDiscription = () => {
           variants={fadeInUp}
           className="text-lg sm:text-xl leading-relaxed mb-12 text-center max-w-3xl mx-auto"
         >
-          حذاء أنيق ومتين مصمم ليتناسب مع كافة احتياجاتك اليومية والمناسبات
-          الرسمية. تم تصنيعه من خامات فاخرة وعالية الجودة تضمن مقاومة طويلة
-          الأمد لعوامل التآكل، مع نعل مبطن يوفر راحة فائقة وامتصاصاً ممتازاً
-          للصدمات. يتميز الحذاء بتصميم عصري وأنيق يعكس الذوق الرفيع، مع لمسات
-          دقيقة تضفي جمالاً استثنائياً. سواء كنت تسعى للأناقة في العمل أو الراحة
-          في النزهات اليومية، فإن هذا الحذاء هو الخيار المثالي للتميز والثقة.
+          حذاء أنيق ومتين مصمم ليجمع بين الراحة والجودة. يتميز بجودة عالية تضمن
+          المتانة مع كل خطوة، ونعل مريح يوفر دعماً استثنائياً طوال اليوم. مثالي
+          للاستخدام اليومي أو المناسبات الخاصة، ليضفي لمسة من الفخامة
+          والأناقة على إطلالتك.
         </motion.p>
         <motion.div
           initial="hidden"
@@ -90,21 +88,21 @@ const ProductDiscription = () => {
           </motion.div>
           <motion.div variants={fadeInUp} className="grid grid-cols-1 gap-4">
             <Image
-              src="/images/5.jpg"
+              src="/images/1.jpg"
               width={300}
               height={300}
               alt="product"
               className="w-full h-auto rounded-lg shadow-xl object-cover relative cursor-pointer transform transition duration-500 hover:scale-105"
             />
             <Image
-              src="/images/6.jpg"
+              src="/images/4.jpg"
               width={300}
               height={300}
               alt="product detail"
               className="w-full h-auto rounded-lg shadow-xl object-cover relative cursor-pointer transform transition duration-500 hover:scale-105"
             />
             <Image
-              src="/images/11.jpg"
+              src="/images/10.jpg"
               width={300}
               height={300}
               alt="product detail"
@@ -124,7 +122,7 @@ const ProductDiscription = () => {
           <div className="aspect-w-16 aspect-h-9 rounded-xl overflow-hidden shadow-2xl flex justify-center items-start">
             <iframe
               className="w-96 h-full"
-              src="https://www.youtube.com/embed/KhB9C9_cvC0"
+              src="https://www.youtube.com/embed/wRFMvQPuBeE"
               title="Product Video"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowFullScreen

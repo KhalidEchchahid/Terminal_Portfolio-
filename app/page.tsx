@@ -1,23 +1,27 @@
-import ProductPageContent from "@/components/ProductPageContent";
+import ProductPageContent from "@/components/ProductPageContent"
 
 // Static data
 const product = {
   id: 1,
   name: "متوفر لاي نوع من الانشطة",
-  price: 299,
-  discount: 450,
+  price: 179,
+  discount: 250,
   images: [
-    "/images/1.jpg",
-    "/images/2.jpg",
-    "/images/3.jpg",
-    "/images/10.jpg",
-    "/images/12.jpg",
+    "/images/13.png",
+    "/images/5.jpg",
+    "/images/7.jpg",
+    "/images/9.jpg",
+    "/images/14.jpg",
+    "/images/15.jpg",
+    "/images/16.jpg",
+    "/images/8.jpg",
+    "/images/6.jpg",
   ],
-  colors: ["الرمادي الداكن", "الباج بالبني", "الأسود"],
+  colors: ["الرمادي", "الأبيض", "الأسود"],
   sizes: ["40", "41", "42", "43", "44"],
   availableStock: 50,
   sku: "KANDRISSI-J001",
-};
+}
 
 const reviews = [
   { id: 1, rating: 5, text: "وصلتني السبرديلة، داكشي ناضي شكرا أخي👍" },
@@ -31,12 +35,16 @@ const reviews = [
     rating: 5,
     text: "صافي أخي راه وصلتني لكموند، إلكان شي جديد خبرني👍",
   },
-];
+]
 
-// This will be statically rendered at build time
 export default function Page() {
-  return <ProductPageContent product={product} reviews={reviews} />;
+  return (
+    <div className="bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900">
+      <ProductPageContent product={product} reviews={reviews} />
+    </div>
+  )
 }
 
 // Ensure static rendering
-export const dynamic = "force-static";
+export const dynamic = "force-static"
+

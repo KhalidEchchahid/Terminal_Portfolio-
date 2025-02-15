@@ -39,7 +39,7 @@ const CheckoutForm = ({
   const router = useRouter();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [message, setMessage] = useState("");
-  const totalAmount = price * quantity;
+  const totalAmount = price;
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {

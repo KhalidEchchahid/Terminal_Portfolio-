@@ -89,3 +89,13 @@
 .custom-scrollbar::-webkit-scrollbar-thumb:hover {
   background: #555;
 }
+
+:root {
+  --background-start: #1a202c;
+  --background-end: #2d3748;
+}
+
+body {
+  background: linear-gradient(to bottom right, var(--background-start), var(--background-end));
+  min-height: 100vh;
+}

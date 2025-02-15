@@ -1,97 +1,167 @@
 "use client";
 
+import type React from "react";
+import { useState, useRef, useEffect } from "react";
 import Image from "next/image";
-import React, { useState } from "react";
-import { useSwipeable } from "react-swipeable";
-import {
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "./ui/dialog";
+import Slider from "react-slick";
+import { Dialog, DialogContent, DialogTrigger } from "./ui/dialog";
+import { ZoomIn, ZoomOut } from "lucide-react";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
 interface GalleryProps {
   images: string[];
 }
 
-const Gallery = ({ images }: GalleryProps) => {
-  const [mainImage, setMainImage] = useState(images[0]);
-  const [isModalOpen, setIsModalOpen] = useState(false);
+const Gallery: React.FC<GalleryProps> = ({ images }) => {
+  const [mainSlider, setMainSlider] = useState<Slider | null>(null);
+  const [thumbnailSlider, setThumbnailSlider] = useState<Slider | null>(null);
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const [isZoomed, setIsZoomed] = useState(false);
   const [modalImage, setModalImage] = useState<string | null>(null);
 
-  const openModal = (image: string) => {
-    setModalImage(image);
-    setIsModalOpen(true);
+  const zoomRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handleZoom = (e: MouseEvent) => {
+      if (zoomRef.current && isZoomed) {
+        const { left, top, width, height } =
+          zoomRef.current.getBoundingClientRect();
+        const x = (e.clientX - left) / width;
+        const y = (e.clientY - top) / height;
+
+        zoomRef.current.style.transformOrigin = `${x * 100}% ${y * 100}%`;
+      }
+    };
+
+    document.addEventListener("mousemove", handleZoom);
+    return () => document.removeEventListener("mousemove", handleZoom);
+  }, [isZoomed]);
+
+  const mainSettings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 5000,
+    rtl: true,
+    beforeChange: (current: number, next: number) => setCurrentSlide(next),
   };
 
-  const closeModal = () => {
-    setIsModalOpen(false);
-    setModalImage(null);
+  const thumbnailSettings = {
+    dots: false,
+    infinite: true,
+    speed: 800,
+    slidesToShow: 5,
+    slidesToScroll: 1,
+    focusOnSelect: true,
+    centerMode: true,
+    centerPadding: "0px",
+    rtl: true,
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 4,
+        },
+      },
+      {
+        breakpoint: 600,
+        settings: {
+          slidesToShow: 3,
+        },
+      },
+    ],
   };
-
-  const handlers = useSwipeable({
-    onSwipedLeft: () => {
-      const currentIndex = images.indexOf(mainImage);
-      const nextIndex = (currentIndex + 1) % images.length;
-      setMainImage(images[nextIndex]);
-    },
-    onSwipedRight: () => {
-      const currentIndex = images.indexOf(mainImage);
-      const prevIndex = (currentIndex - 1 + images.length) % images.length;
-      setMainImage(images[prevIndex]);
-    },
-    trackMouse: true,
-  });
 
   return (
-    <div className="flex flex-col gap-3 max-w-[500px]" id="gallery" dir="rtf">
-      <Dialog open={isModalOpen} onOpenChange={setIsModalOpen}>
-        <DialogTrigger asChild>
-          <div {...handlers} className="relative">
-            <Image
-              src={mainImage}
-              width={300}
-              height={300}
-              alt="product"
-              className="w-96 h-96 rounded-lg shadow-xl object-cover relative cursor-pointer"
-              onClick={() => openModal(mainImage)}
-            />
-          </div>
-        </DialogTrigger>
-        <DialogContent className="bg-white w-full max-h-screen p-0">
-          <DialogHeader className="hidden">
-            <DialogTitle>Full image</DialogTitle>
-          </DialogHeader>
-          {modalImage && (
-            <Image
-              src={modalImage}
-              alt="Full Image"
-              width={600}
-              height={700}
-              className="rounded-lg w-full h-full object-contain"
-            />
-          )}
-        </DialogContent>
-      </Dialog>
-      <div className="flex gap-2 overflow-x-auto tailwind-scrollbar-hide custom-scrollbar max-w-96">
-        {images.map((image, index) => (
-          <Image
-            key={index}
-            src={image}
-            height={200}
-            width={200}
-            alt={`product-${index}`}
-            className={`w-20 h-20 rounded-lg object-cover cursor-pointer ${
-              mainImage === image ? "border-2 border-blue-500" : ""
-            }`}
-            onClick={() => setMainImage(image)}
-          />
-        ))}
+    <div className="max-w-2xl mx-auto px-2">
+      <div className="relative mb-4">
+        <Slider
+          {...mainSettings}
+          asNavFor={thumbnailSlider || undefined}
+          ref={(slider) => setMainSlider(slider)}
+        >
+          {images.map((image, index) => (
+            <div key={index} className="relative aspect-square">
+              <Image
+                src={image || "/placeholder.svg"}
+                alt={`Product ${index + 1}`}
+                layout="fill"
+                objectFit="cover"
+                className="rounded-lg"
+              />
+            </div>
+          ))}
+        </Slider>
+        <Dialog>
+          <DialogTrigger asChild>
+            <button
+              className="absolute bottom-3 left-2 bg-white bg-opacity-50 rounded-full p-2 hover:bg-opacity-75 transition-all"
+              onClick={() => setModalImage(images[currentSlide])}
+            >
+              <ZoomIn className="w-6 h-6 text-gray-800" />
+            </button>
+          </DialogTrigger>
+          <DialogContent className="max-w-4xl w-full h-full flex items-center justify-center bg-white bg-opacity-90">
+            <div
+              ref={zoomRef}
+              className={`relative w-full h-full transition-transform duration-300 ${
+                isZoomed ? "scale-150" : "scale-100"
+              }`}
+            >
+              {modalImage && (
+                <Image
+                  src={modalImage || "/placeholder.svg"}
+                  alt="Full size product image"
+                  layout="fill"
+                  objectFit="contain"
+                />
+              )}
+            </div>
+            <button
+              className="absolute top-4 left-4 bg-white bg-opacity-50 rounded-full p-2 hover:bg-opacity-75 transition-all"
+              onClick={() => setIsZoomed(!isZoomed)}
+            >
+              {isZoomed ? (
+                <ZoomOut className="w-6 h-6 text-gray-800" />
+              ) : (
+                <ZoomIn className="w-6 h-6 text-gray-800" />
+              )}
+            </button>
+          </DialogContent>
+        </Dialog>
+      </div>
+      <div className="mt-4">
+        <Slider
+          {...thumbnailSettings}
+          asNavFor={mainSlider || undefined}
+          ref={(slider) => setThumbnailSlider(slider)}
+          beforeChange={(current, next) => {
+            if (mainSlider) {
+              mainSlider.slickGoTo(next);
+            }
+          }}
+        >
+          {images.map((image, index) => (
+            <div key={index} className="px-1">
+              <div className="relative aspect-square">
+                <Image
+                  src={image || "/placeholder.svg"}
+                  alt={`Thumbnail ${index + 1}`}
+                  layout="fill"
+                  objectFit="cover"
+                  className="rounded-lg cursor-pointer"
+                />
+              </div>
+            </div>
+          ))}
+        </Slider>
       </div>
     </div>
   );
 };
 
 export default Gallery;
-
