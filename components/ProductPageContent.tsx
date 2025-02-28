@@ -20,7 +20,7 @@ interface ProductPageContentProps {
     price: number
     discount: number
     images: string[]
-    colors: string[]
+    colors: { name: string; available: boolean }[]
     sizes: string[]
     availableStock: number
     sku: string
@@ -33,7 +33,7 @@ interface ProductPageContentProps {
 }
 
 const ProductPageContent: React.FC<ProductPageContentProps> = ({ product, reviews }) => {
-  const [selectedColor, setSelectedColor] = useState<string>(product.colors[0])
+  const [selectedColor, setSelectedColor] = useState<string>(product.colors.find((c) => c.available)?.name || "")
   const [selectedSize, setSelectedSize] = useState<string>(product.sizes[0])
   const [quantity, setQuantity] = useState<number>(1)
   const [scope, animate] = useAnimate()

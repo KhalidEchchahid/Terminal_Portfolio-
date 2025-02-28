@@ -1,8 +1,8 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { motion } from "framer-motion";
-import { ChevronDown } from "lucide-react";
+import { AnimatePresence, motion } from "framer-motion";
+import { AlertCircle, ChevronDown } from "lucide-react";
 import {
   Select,
   SelectContent,
@@ -14,7 +14,7 @@ import {
 interface Props {
   title: string;
   sizes: string[];
-  colors: string[];
+  colors: { name: string; available: boolean }[]
   price: number;
   discount: number;
   selectedColor: string;
@@ -39,6 +39,7 @@ const ProductInfo = ({
   setQuantity,
 }: Props) => {
   const [animatePrice, setAnimatePrice] = useState(false);
+  const [showUnavailableMessage, setShowUnavailableMessage] = useState(false)
   const discountPercentage = discount
     ? Math.round(((discount * quantity - price) / discount) * 100)
     : 0;
@@ -54,6 +55,17 @@ const ProductInfo = ({
     { value: 2, price: 299 },
     { value: 3, price: 399 },
   ];
+
+  const handleColorClick = (color: { name: string; available: boolean }) => {
+    if (color.available) {
+      setSelectedColor(color.name)
+      setShowUnavailableMessage(false)
+    } else {
+      setShowUnavailableMessage(true)
+      setTimeout(() => setShowUnavailableMessage(false), 3000) // Hide message after 3 seconds
+    }
+  }
+
 
   return (
     <div className="max-w-[400px] p-6 bg-gradient-to-br from-gray-900 to-gray-800 rounded-lg shadow-xl text-gray-100">
@@ -96,18 +108,34 @@ const ProductInfo = ({
               <motion.button
                 key={index}
                 className={`px-4 py-2 rounded-full transition-colors ${
-                  selectedColor === color
+                  selectedColor === color.name
                     ? "bg-yellow-400 text-gray-900"
-                    : "bg-gray-700 text-gray-200 hover:bg-gray-600"
+                    : color.available
+                    ? "bg-gray-700 text-gray-200 hover:bg-gray-600"
+                    : "bg-gray-500 text-gray-400 cursor-not-allowed opacity-50"
                 }`}
-                onClick={() => setSelectedColor(color)}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
+                onClick={() => handleColorClick(color)}
+                whileHover={color.available ? { scale: 1.05 } : {}}
+                whileTap={color.available ? { scale: 0.95 } : {}}
               >
-                {color}
+                {color.name}
+                {!color.available && " (غير متوفر)"}
               </motion.button>
             ))}
           </div>
+          <AnimatePresence>
+            {showUnavailableMessage && (
+              <motion.div
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -10 }}
+                className="mt-2 p-2 bg-red-500 text-white rounded-md flex items-center"
+              >
+                <AlertCircle className="w-5 h-5 mr-2" />
+                <span>عذرًا، هذا اللون غير متوفر حاليًا. يرجى اختيار لون آخر.</span>
+              </motion.div>
+            )}
+          </AnimatePresence>
         </div>
       )}
 
