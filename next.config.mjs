@@ -1,16 +1,16 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-    env: {
-        NEXTAUTH_SECRET: "hNvYJxherm9EBhejiCijk9pWzWi3dvn4sQ/hxORTMho=",
-      },
+  env: {
+    NEXTAUTH_SECRET: "hNvYJxherm9EBhejiCijk9pWzWi3dvn4sQ/hxORTMho=",
+  },
 
-     images: {
-      remotePatterns: [
-        {
-          hostname: "www.facebook.com",
-        },
-      ],
-    },
+  images: {
+    remotePatterns: [
+      {
+        hostname: "media.licdn.com",
+      },
+    ],
+  },
 };
 
 export default nextConfig;

@@ -1,14 +1,15 @@
-import type { Config } from "tailwindcss";
+/** @type {import('tailwindcss').Config} */
+const { fontFamily } = require("tailwindcss/defaultTheme")
 
-const config = {
+module.exports = {
   darkMode: ["class"],
   content: [
     "./pages/**/*.{ts,tsx}",
     "./components/**/*.{ts,tsx}",
     "./app/**/*.{ts,tsx}",
     "./src/**/*.{ts,tsx}",
+    "*.{js,ts,jsx,tsx,mdx}",
   ],
-  prefix: "",
   theme: {
     container: {
       center: true,
@@ -52,29 +53,31 @@ const config = {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
+        "terminal-bg": "var(--terminal-bg)",
+        "terminal-code": "var(--terminal-code)",
+        "terminal-text": "var(--terminal-text)",
+        "terminal-text-dim": "var(--terminal-text-dim)",
+        "terminal-text-bright": "var(--terminal-text-bright)",
+        "terminal-border": "var(--terminal-border)",
+        "terminal-header": "var(--terminal-header)",
+        "terminal-header-dark": "var(--terminal-header-dark)",
+        "terminal-header-light": "var(--terminal-header-light)",
+        "terminal-green": "var(--terminal-green)",
+        "terminal-yellow": "var(--terminal-yellow)",
+        "terminal-red": "var(--terminal-red)",
+        "terminal-blue": "var(--terminal-blue)",
+        "terminal-purple": "var(--terminal-purple)",
       },
       borderRadius: {
         lg: "var(--radius)",
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
       },
-      keyframes: {
-        "accordion-down": {
-          from: { height: "0" },
-          to: { height: "var(--radix-accordion-content-height)" },
-        },
-        "accordion-up": {
-          from: { height: "var(--radix-accordion-content-height)" },
-          to: { height: "0" },
-        },
-      },
-      animation: {
-        "accordion-down": "accordion-down 0.2s ease-out",
-        "accordion-up": "accordion-up 0.2s ease-out",
+      fontFamily: {
+        mono: ["JetBrains Mono", ...fontFamily.mono],
       },
     },
   },
-  plugins: [require("tailwindcss-animate"), require("tailwind-scrollbar-hide")],
-} satisfies Config;
+  plugins: [require("tailwindcss-animate")],
+}
 
-export default config;

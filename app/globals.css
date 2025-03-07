@@ -4,98 +4,73 @@
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
-    --radius: 0.5rem;
-    --chart-1: 12 76% 61%;
-    --chart-2: 173 58% 39%;
-    --chart-3: 197 37% 24%;
-    --chart-4: 43 74% 66%;
-    --chart-5: 27 87% 67%;
-  }
-
-  .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
-    --chart-1: 220 70% 50%;
-    --chart-2: 160 60% 45%;
-    --chart-3: 30 80% 55%;
-    --chart-4: 280 65% 60%;
-    --chart-5: 340 75% 55%;
+    --terminal-bg: #1e1e2e;
+    --terminal-code: #1a1b26;
+    --terminal-text: #cdd6f4;
+    --terminal-text-dim: #a6adc8;
+    --terminal-text-bright: #f5f5f7;
+    --terminal-border: #313244;
+    --terminal-header: #181825;
+    --terminal-header-dark: #11111b;
+    --terminal-header-light: #313244;
+    --terminal-green: #a6e3a1;
+    --terminal-yellow: #f9e2af;
+    --terminal-red: #f38ba8;
+    --terminal-blue: #89b4fa;
+    --terminal-purple: #cba6f7;
   }
 }
 
-@layer base {
-  * {
-    @apply border-border;
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+@keyframes blink {
+  0%,
+  49% {
+    opacity: 1;
   }
-  body {
-    @apply bg-background text-foreground;
+  50%,
+  100% {
+    opacity: 0;
   }
 }
 
-/* Hide scrollbar for IE, Edge and Firefox */
-.no-scrollbar {
-  -ms-overflow-style: none;  /* IE and Edge */
-  scrollbar-width: none;  /* Firefox */
+.cursor-blink {
+  animation: blink 1s infinite;
 }
 
-.custom-scrollbar::-webkit-scrollbar {
-  width: 3px;
-  height: 3px;
-  border-radius: 2px;
-}
-.custom-scrollbar::-webkit-scrollbar-track {
-  background: #ffffff;
-}
-.custom-scrollbar::-webkit-scrollbar-thumb {
-  background: #888;
-  border-radius: 50px;
-}
-.custom-scrollbar::-webkit-scrollbar-thumb:hover {
-  background: #555;
+pre {
+  margin: 0;
 }
 
-:root {
-  --background-start: #1a202c;
-  --background-end: #2d3748;
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
 }
 
-body {
-  background: linear-gradient(to bottom right, var(--background-start), var(--background-end));
-  min-height: 100vh;
+::-webkit-scrollbar-track {
+  background: var(--terminal-bg);
 }
+
+::-webkit-scrollbar-thumb {
+  background: var(--terminal-border);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--terminal-header-light);
+}
+
+/* Terminal blinking cursor */
+.terminal-cursor::after {
+  content: "|";
+  animation: blink 1s step-end infinite;
+}
+
