@@ -15,7 +15,7 @@ export function useTerminalCommands({ activeSection, setActiveSection, addToOutp
 
   // Define all available commands
   const COMMANDS = {
-    BASIC: ["home", "about", "skills", "projects", "contact", "help", "clear", "social", "exit", "files"],
+    BASIC: ["home", "about", "skills", "projects", "contact", "help", "clear", "social", "exit", "files", "blog"],
     EASTER_EGGS: ["launch_portfolio", "coffee", "joke", "github", "linkedin", "resume", "3d_portfolio"],
     SYSTEM: ["ls", "cat", "pwd", "cd", "echo", "man", "whoami", "date", "history", "edit", "nano", "vim"],
     FILE_SYSTEM: {
@@ -56,7 +56,7 @@ export function useTerminalCommands({ activeSection, setActiveSection, addToOutp
       }
 
       // Navigation commands
-      if (["home", "about", "skills", "projects", "contact", "files"].includes(cmd)) {
+      if (["home", "about", "skills", "projects", "contact", "files", "blog"].includes(cmd)) {
         setActiveSection(cmd)
         addToOutputHistory({
           type: "success",
@@ -88,6 +88,7 @@ export function useTerminalCommands({ activeSection, setActiveSection, addToOutp
             "projects.js": "projects",
             "contact.html": "contact",
             "files.txt": "files",
+            "blog.txt": "blog",
           }
 
           // Use type assertion to bypass TypeScript error
@@ -392,7 +393,15 @@ export function useTerminalCommands({ activeSection, setActiveSection, addToOutp
         )
 
         // Add portfolio section files
-        const sectionFiles = ["home.sh", "about.md", "skills.json", "projects.js", "contact.html", "files.txt"]
+        const sectionFiles = [
+          "home.sh",
+          "about.md",
+          "skills.json",
+          "projects.js",
+          "contact.html",
+          "files.txt",
+          "blog.txt",
+        ]
 
         addToOutputHistory({
           type: "system",
@@ -482,6 +491,7 @@ export function useTerminalCommands({ activeSection, setActiveSection, addToOutp
           "projects.js": "projects",
           "contact.html": "contact",
           "files.txt": "files",
+          "blog.txt": "blog",
         }
 
         if (sectionFiles[fileName as keyof typeof sectionFiles]) {
@@ -743,6 +753,7 @@ A web application for collaboration within companies, similar to Stack Overflow.
             projects: "List projects and their details",
             contact: "Display contact information",
             files: "Open the file explorer",
+            blog: "Open the blog section",
             help: "Show available commands",
             clear: "Clear the terminal screen",
             social: "Display social media links",

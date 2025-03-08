@@ -1,0 +1,272 @@
+/* Terminal-themed prose styles */
+.prose-terminal {
+    /* Base styling */
+    color: var(--terminal-text);
+    max-width: none;
+    font-size: 1rem;
+    line-height: 1.75;
+  
+    /* Headings */
+    & h1,
+    & h2,
+    & h3,
+    & h4 {
+      color: var(--terminal-green);
+      font-weight: 600;
+      line-height: 1.3;
+      scroll-margin-top: 100px;
+    }
+  
+    & h1 {
+      font-size: 2.25em;
+      margin-top: 0;
+      margin-bottom: 0.8em;
+    }
+  
+    & h2 {
+      font-size: 1.75em;
+      margin-top: 2em;
+      margin-bottom: 1em;
+      padding-bottom: 0.5em;
+      border-bottom: 1px solid var(--terminal-border);
+    }
+  
+    & h3 {
+      font-size: 1.5em;
+      margin-top: 1.5em;
+      margin-bottom: 0.75em;
+    }
+  
+    & h4 {
+      font-size: 1.25em;
+      margin-top: 1.5em;
+      margin-bottom: 0.75em;
+    }
+  
+    /* Paragraphs and spacing */
+    & p {
+      margin-top: 1.25em;
+      margin-bottom: 1.25em;
+      line-height: 1.8;
+    }
+  
+    /* Lists */
+    & ul,
+    & ol {
+      margin-top: 1.25em;
+      margin-bottom: 1.25em;
+      padding-left: 1.625em;
+    }
+  
+    & li {
+      margin-top: 0.5em;
+      margin-bottom: 0.5em;
+    }
+  
+    & ul > li::marker {
+      color: var(--terminal-green);
+    }
+  
+    & ol > li::marker {
+      color: var(--terminal-green);
+    }
+  
+    /* Links */
+    & a {
+      color: var(--terminal-blue);
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+  
+    & a:hover {
+      text-decoration: underline;
+      color: var(--terminal-green);
+    }
+  
+    /* Blockquotes */
+    & blockquote {
+      font-style: italic;
+      color: var(--terminal-text-dim);
+      border-left: 4px solid var(--terminal-green);
+      padding-left: 1.25em;
+      margin: 1.5em 0;
+    }
+  
+    /* Code blocks */
+    & pre {
+      background-color: var(--terminal-header-dark) !important;
+      border: 1px solid var(--terminal-border);
+      border-radius: 0.375rem;
+      padding: 1.25em;
+      margin: 1.5em 0;
+      overflow-x: auto;
+      font-size: 0.875em;
+      line-height: 1.7;
+    }
+  
+    & pre code {
+      background-color: transparent;
+      padding: 0;
+      font-size: inherit;
+      color: inherit;
+      border-radius: 0;
+    }
+  
+    /* Inline code */
+    & :not(pre) > code {
+      background-color: var(--terminal-header-dark);
+      color: var(--terminal-yellow);
+      padding: 0.2em 0.4em;
+      border-radius: 0.25em;
+      font-size: 0.875em;
+      font-family: var(--font-mono);
+    }
+  
+    /* Tables */
+    & table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1.5em 0;
+      font-size: 0.875em;
+    }
+  
+    & th {
+      background-color: var(--terminal-header-dark);
+      color: var(--terminal-green);
+      font-weight: 600;
+      text-align: left;
+      padding: 0.75em;
+      border: 1px solid var(--terminal-border);
+    }
+  
+    & td {
+      padding: 0.75em;
+      border: 1px solid var(--terminal-border);
+    }
+  
+    & tr:nth-child(even) {
+      background-color: var(--terminal-header-dark);
+    }
+  
+    /* Images */
+    & img {
+      border-radius: 0.375rem;
+      border: 1px solid var(--terminal-border);
+      margin: 1.5em 0;
+    }
+  
+    /* Horizontal rule */
+    & hr {
+      border: 0;
+      border-top: 1px solid var(--terminal-border);
+      margin: 2.5em 0;
+    }
+  
+    /* Custom elements */
+    & .code-title {
+      background-color: var(--terminal-header-dark);
+      color: var(--terminal-text-dim);
+      font-size: 0.75em;
+      padding: 0.5em 1em;
+      border: 1px solid var(--terminal-border);
+      border-bottom: none;
+      border-radius: 0.375rem 0.375rem 0 0;
+      font-family: var(--font-mono);
+    }
+  
+    & .code-title + pre {
+      margin-top: 0;
+      border-top-left-radius: 0;
+      border-top-right-radius: 0;
+    }
+  }
+  
+  /* Syntax highlighting overrides */
+  .hljs {
+    background: var(--terminal-header-dark) !important;
+    color: var(--terminal-text) !important;
+  }
+  
+  .hljs-comment,
+  .hljs-quote {
+    color: var(--terminal-text-dim) !important;
+    font-style: italic;
+  }
+  
+  .hljs-keyword,
+  .hljs-selector-tag {
+    color: var(--terminal-purple) !important;
+  }
+  
+  .hljs-string,
+  .hljs-regexp,
+  .hljs-addition {
+    color: var(--terminal-green) !important;
+  }
+  
+  .hljs-title,
+  .hljs-section,
+  .hljs-name,
+  .hljs-selector-id,
+  .hljs-selector-class {
+    color: var(--terminal-blue) !important;
+  }
+  
+  .hljs-number,
+  .hljs-deletion {
+    color: var(--terminal-red) !important;
+  }
+  
+  .hljs-variable,
+  .hljs-template-variable {
+    color: var(--terminal-yellow) !important;
+  }
+  
+  .hljs-built_in,
+  .hljs-literal,
+  .hljs-type,
+  .hljs-params {
+    color: var(--terminal-yellow) !important;
+  }
+  
+  .hljs-attribute,
+  .hljs-subst {
+    color: var(--terminal-text) !important;
+  }
+  
+  .hljs-formula {
+    background-color: var(--terminal-header-dark);
+    font-style: italic;
+  }
+  
+  .hljs-addition {
+    background-color: rgba(166, 227, 161, 0.1);
+  }
+  
+  .hljs-deletion {
+    background-color: rgba(243, 139, 168, 0.1);
+  }
+  
+  .hljs-selector-pseudo,
+  .hljs-selector-attr {
+    color: var(--terminal-purple) !important;
+  }
+  
+  .hljs-doctag {
+    color: var(--terminal-red) !important;
+  }
+  
+  .hljs-meta {
+    color: var(--terminal-yellow) !important;
+  }
+  
+  .hljs-emphasis {
+    font-style: italic;
+  }
+  
+  .hljs-strong {
+    font-weight: bold;
+  }
+  
+  

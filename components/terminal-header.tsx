@@ -1,4 +1,4 @@
-"use client"
+"\"use client"
 
 import { useContext } from "react"
 import { Circle, X, Minus, Maximize2 } from "lucide-react"
@@ -23,9 +23,11 @@ export default function TerminalHeader({ activeSection, onTabChange }: TerminalH
   ]
 
   return (
-    <div className={`rounded-t-lg overflow-hidden ${theme.bgHeaderClass} border ${theme.borderClass} border-b-0`}>
+    <div
+      className={`rounded-t-lg overflow-hidden ${theme.bgHeaderClass} border ${theme.borderClass} border-b-0 transition-colors duration-300`}
+    >
       {/* Window controls */}
-      <div className={`flex items-center px-4 py-2 ${theme.bgHeaderDarkClass}`}>
+      <div className={`flex items-center px-4 py-2 ${theme.bgHeaderDarkClass} transition-colors duration-300`}>
         <div className="flex space-x-2">
           <div className="w-3 h-3 rounded-full bg-terminal-red flex items-center justify-center group">
             <X className="w-2 h-2 text-terminal-bg opacity-0 group-hover:opacity-100" />
@@ -41,13 +43,15 @@ export default function TerminalHeader({ activeSection, onTabChange }: TerminalH
       </div>
 
       {/* Tabs */}
-      <div className={`flex overflow-x-auto ${theme.bgHeaderClass} text-terminal-text-dim scrollbar-hide`}>
+      <div
+        className={`flex overflow-x-auto ${theme.bgHeaderClass} text-terminal-text-dim scrollbar-hide transition-colors duration-300`}
+      >
         {tabs.map((tab) => (
           <button
             key={tab.id}
             className={`group flex items-center px-4 py-2 text-xs cursor-pointer whitespace-nowrap border-r ${theme.borderClass} ${
               activeSection === tab.id ? theme.bgClass + " " + theme.textClass : `hover:${theme.bgHeaderLightClass}`
-            }`}
+            } transition-colors duration-300`}
             onClick={() => onTabChange(tab.id)}
           >
             <Circle

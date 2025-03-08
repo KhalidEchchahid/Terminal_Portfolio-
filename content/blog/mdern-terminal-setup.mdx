@@ -1,0 +1,44 @@
+---
+title: 'Building a Modern Terminal Setup with Tmux and Neovim'
+date: '2024-03-15'
+description: 'A comprehensive guide to setting up a productive terminal environment using Tmux for session management and Neovim as your code editor.'
+image: '/terminal-split-tmux2.png'
+tags: ['Terminal', 'Tmux', 'Neovim', 'Productivity']
+featured: true
+---
+
+# Building a Modern Terminal Setup with Tmux and Neovim
+
+As developers, we spend countless hours in our terminal. Having a well-configured, efficient terminal setup can significantly boost your productivity and make your coding experience more enjoyable. In this guide, I'll walk you through setting up a modern terminal environment using Tmux for session management and Neovim as your code editor.
+
+## Why Tmux and Neovim?
+
+**Tmux** (Terminal Multiplexer) allows you to:
+- Create multiple terminal sessions within a single window
+- Detach from and reattach to sessions (great for remote work)
+- Split your terminal into multiple panes
+- Create custom layouts for different workflows
+
+**Neovim** is a modern fork of Vim that offers:
+- Asynchronous plugin support
+- Built-in LSP (Language Server Protocol) support
+- Better defaults and extensibility
+- Active community and development
+
+Together, they create a powerful, keyboard-driven development environment that works on virtually any system.
+
+## Setting Up Tmux
+
+First, let's install and configure Tmux:
+
+```bash
+# Install Tmux
+# On Ubuntu/Debian
+sudo apt install tmux
+
+# On macOS with Homebrew
+brew install tmux
+
+# On Arch Linux
+sudo pacman -S tmux
+

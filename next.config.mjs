@@ -9,6 +9,9 @@ const nextConfig = {
       {
         hostname: "media.licdn.com",
       },
+      {
+        hostname: "www.google.com",
+      },
     ],
   },
 };
