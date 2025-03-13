@@ -1,5 +1,6 @@
 
 import ThreeDPortfolioLite from "@/components/3d/three-d-portfolio-lite"
+import { JsonLd } from "@/components/seo/json-ld"
 import { Metadata } from "next"
 
 
@@ -38,9 +39,12 @@ export default function ThreeDPortfolioPage() {
   }
 
   return (
+    <>
+          <JsonLd data={jsonLd} />
     <main className="min-h-screen bg-terminal-bg text-terminal-text relative">
       <ThreeDPortfolioLite />
     </main>
+    </>
   )
 }
 

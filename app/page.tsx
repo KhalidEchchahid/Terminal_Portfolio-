@@ -1,3 +1,4 @@
+import { JsonLd } from "@/components/seo/json-ld"
 import Terminal from "@/components/terminal/terminal"
 import type { Metadata } from "next"
 
@@ -56,9 +57,12 @@ export default function Home() {
     }
   
   return (
+    <>
+          <JsonLd data={jsonLd} />
     <main className="min-h-screen bg-terminal-bg text-terminal-text">
       <Terminal />
     </main>
+    </>
   )
 }
 
