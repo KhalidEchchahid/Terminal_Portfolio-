@@ -1,0 +1,28 @@
+{
+    "name": "Khalid Echchahid - Software Engineer from Morocco",
+    "short_name": "Khalid Echchahid",
+    "description":   "Khalid Echchahid is a passionate software engineering student with a strong interest in building real-world applications and solving complex problems. He has experience in full-stack development, DevOps, and system architecture, with a focus on creating efficient and scalable solutions. Always eager to learn and grow, Khalid enjoys exploring new technologies and sharing knowledge with others.",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#1e1e2e",
+    "theme_color": "#a6e3a1",
+    "icons": [
+      {
+        "src": "/android-chrome-192x192.png",
+        "sizes": "192x192",
+        "type": "image/png"
+      },
+      {
+        "src": "/android-chrome-512x512.png",
+        "sizes": "512x512",
+        "type": "image/png"
+      }
+    ],
+    "categories": ["portfolio", "technology", "blog", "development", "Morocco"],
+    "lang": "en-US",
+    "dir": "ltr",
+    "orientation": "any",
+    "prefer_related_applications": false
+  }
+  
+  
