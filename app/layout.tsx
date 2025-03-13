@@ -64,7 +64,7 @@ export const metadata: Metadata = {
       "Khalid Echchahid is a passionate software engineering student with a strong interest in building real-world applications and solving complex problems. He has experience in full-stack development, DevOps, and system architecture, with a focus on creating efficient and scalable solutions. Always eager to learn and grow, Khalid enjoys exploring new technologies and sharing knowledge with others.",
     images: [
       {
-        url: "/public/khalid.jpg",
+        url: "/khalid.jpg",
         width: 1200,
         height: 630,
         alt: "Khalid Echchahid - Software Engineer",
@@ -77,7 +77,7 @@ export const metadata: Metadata = {
     description:
     "Khalid Echchahid is a passionate software engineering student with a strong interest in building real-world applications and solving complex problems. He has experience in full-stack development, DevOps, and system architecture, with a focus on creating efficient and scalable solutions. Always eager to learn and grow, Khalid enjoys exploring new technologies and sharing knowledge with others.",
     creator: "@khalidechchahid",
-    images: ["/public/khalid.jpg"],
+    images: ["/khalid.jpg"],
   },
   icons: {
     icon: [
@@ -126,7 +126,7 @@ export default function RootLayout({
               "@type": "Person",
               name: "Khalid Echchahid",
               url: "https://khalidechchahid.me",
-              image: "/public/khalid.jpg",
+              image: "/khalid.jpg",
               sameAs: [
                 "https://github.com/khalidechchahid",
                 "https://www.linkedin.com/in/khalid-echchahid",
