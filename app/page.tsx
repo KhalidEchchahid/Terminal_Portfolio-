@@ -23,7 +23,7 @@ export default function Home() {
         "@type": "Person",
         name: "Khalid Echchahid",
         url: "https://khalidechchahid.me",
-        image: "/khalid.jpg",
+        image: "https://khalidechchahid.me/khalid.jpg",
         sameAs: [
           "https://github.com/khalidechchahid",
           "https://www.linkedin.com/in/khalid-echchahid/",
