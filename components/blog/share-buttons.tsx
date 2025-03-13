@@ -11,7 +11,7 @@ interface ShareButtonsProps {
 
 export default function ShareButtons({ title, slug }: ShareButtonsProps) {
   const [isCopied, setIsCopied] = useState(false)
-  const shareUrl = `https://your-website.com/blog/${slug}`
+  const shareUrl = `https://khalidechchahid.me/blog/${slug}`
 
   const shareLinks = [
     {
