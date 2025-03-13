@@ -1,9 +1,12 @@
 import type React from "react"
+import { JetBrains_Mono } from "next/font/google"
 import type { Metadata } from "next"
-import { Inter } from "next/font/google"
 import "./globals.css"
 
-const inter = Inter({ subsets: ["latin"] })
+const jetbrainsMono = JetBrains_Mono({
+  subsets: ["latin"],
+  variable: "--font-mono",
+})
 
 // Define your website metadata with personal branding focus
 export const metadata: Metadata = {
@@ -97,11 +100,9 @@ export const metadata: Metadata = {
       "en-US": "https://khalidechchahid.me",
     },
   },
-  // verification: {
-  //   google: "your-google-site-verification-code",
-  //   yandex: "your-yandex-verification-code",
-  //   bing: "your-bing-verification-code",
-  // },
+  verification: {
+    google: "kxkkRg7CVtHLYhTyoBwWjiDmupHOV6B9XdEvJ",
+  },
 }
 
 export default function RootLayout({
@@ -139,9 +140,7 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className={inter.className}>
-          {children}
-      </body>
+      <body className={`${jetbrainsMono.variable} font-mono bg-terminal-bg text-terminal-text`}>{children}</body>
     </html>
   )
 }
