@@ -3,7 +3,7 @@ import Terminal from "@/components/terminal/terminal"
 import type { Metadata } from "next"
 
 export const metadata: Metadata = {
-  title: "Khalid Echchahid | Software Engineer & Developer Portfolio",
+  title: "Khalid Echchahid | Software Engineer ",
   description:
   "Khalid Echchahid is a passionate software engineering student with a strong interest in building real-world applications and solving complex problems. He has experience in full-stack development, DevOps, and system architecture, with a focus on creating efficient and scalable solutions. Always eager to learn and grow, Khalid enjoys exploring new technologies and sharing knowledge with others.",
   alternates: {

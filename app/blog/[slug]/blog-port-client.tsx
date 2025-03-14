@@ -27,8 +27,8 @@ import TableOfContents from "@/components/mdx/table-of-contents";
 import mdxComponents from "@/components/mdx/mdx-components";
 import ShareButtons from "@/components/blog/share-buttons";
 import type { BlogPost } from "@/lib/mdx";
-// import { useToast } from "@/hooks/use-toast"
 import Comments from "@/components/blog/comments";
+import { toast } from "sonner";
 
 interface BlogPostClientProps {
   post: BlogPost;
@@ -43,6 +43,7 @@ export default function BlogPostClient({
   nextPost,
   relatedPosts,
 }: BlogPostClientProps) {
+
   // Keyboard navigation
   useEffect(() => {
     const handleKeyPress = (e: KeyboardEvent) => {
@@ -162,7 +163,7 @@ export default function BlogPostClient({
                 onClick={() => {
                   // Replace with your GitHub repo URL
                   window.open(
-                    `https://github.com/yourusername/blog/edit/main/content/blog/${post.slug}.mdx`
+                    `https://github.com/KhalidEchchahid/Terminal_Portfolio-/tree/main/content/blog/${post.slug}.mdx`
                   );
                 }}
               >
@@ -176,28 +177,13 @@ export default function BlogPostClient({
                 className="bg-terminal-header border-terminal-border"
                 onClick={() => {
                   navigator.clipboard.writeText(window.location.href);
-                  // toast({
-                  //   title: "Link copied!",
-                  //   description: "The link has been copied to your clipboard.",
-                  // })
+                  toast( "Link copied!",{
+                    description: "The link has been copied to your clipboard.",
+                  })
                 }}
               >
                 <Share2 className="h-4 w-4 mr-2" />
                 Share
-              </Button>
-
-              <Button
-                variant="outline"
-                size="sm"
-                className="bg-terminal-header border-terminal-border"
-                onClick={() => {
-                  document
-                    .getElementById("comments")
-                    ?.scrollIntoView({ behavior: "smooth" });
-                }}
-              >
-                <MessageSquare className="h-4 w-4 mr-2" />
-                Comments
               </Button>
             </div>
           </header>
@@ -312,11 +298,6 @@ export default function BlogPostClient({
                   </Link>
                 )}
               </nav>
-
-              {/* Comments Section */}
-              <div id="comments" className="mt-12">
-                <Comments postSlug={post.slug} />
-              </div>
             </div>
           </div>
         </div>
