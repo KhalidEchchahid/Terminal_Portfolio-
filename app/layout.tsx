@@ -9,7 +9,7 @@ const jetbrainsMono = JetBrains_Mono({
   variable: "--font-mono",
 });
 
-// Define your website metadata with personal branding focus
+// Define the website metadata with personal branding focus
 export const metadata: Metadata = {
   metadataBase: new URL("https://khalidechchahid.me"),
   title: {
@@ -122,7 +122,7 @@ export default function RootLayout({
           crossOrigin="anonymous"
         />
 
-        {/* Add structured data for personal identity */}
+        {/* structured data for personal identity */}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
