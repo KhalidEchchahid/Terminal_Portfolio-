@@ -1,0 +1,148 @@
+---
+title: "Building My Terminal Portfolio: Where Code Meets Creativity"
+date: "2025-03-15"
+description: "The journey of creating an interactive terminal-based portfolio website and the lessons learned along the way."
+image: "/images/terminal.png"
+tags: ["Portfolio", "Terminal", "Next.js", "React", "Web Development"]
+featured: true
+---
+
+import Image from "next/image";
+import { CodeBlock } from "@/components/CodeBlock";
+import { TerminalDemo } from "@/components/TerminalDemo";
+import { Callout } from "@/components/Callout";
+
+# Building My Terminal Portfolio: Where Code Meets Creativity
+
+Ever wondered what happens when a software engineer gets tired of traditional portfolios? You get a fully interactive terminal website! That's exactly what I built, and here's the story behind it.
+
+## Why a Terminal?
+
+As a developer, I live in the command line. It's where I feel most at home, typing away commands that make my computer dance. When it came time to create a portfolio that truly represented _me_, the choice was obvious.
+
+I wanted visitors to experience not just what I've built, but _how_ I think. A terminal interface perfectly captures that blend of technical precision and creative problem-solving that defines my approach to software engineering.
+
+<Image
+  src="/images/terminal-inspiration.jpg"
+  alt="My actual terminal setup that inspired the portfolio"
+  width={800}
+  height={450}
+  className="rounded-lg my-6"
+/>
+
+## From Idea to Reality
+
+I built the portfolio using Next.js, React, and Tailwind CSS. The terminal itself is custom-built from scratch, designed to be:
+
+- **Authentic** - It feels like a real terminal, not just a gimmick
+- **Accessible** - Even non-technical visitors can navigate it
+- **Responsive** - Works on everything from phones to desktops
+- **Playful** - Because coding should be fun!
+
+Here's a peek at the heart of the terminal - the command processor:
+
+<CodeBlock language="javascript">
+  {`const processCommand = (command) => {
+  const [cmd, ...args] = command.toLowerCase().trim().split(' ');
+  
+  // Navigation commands
+  if (["home", "about", "skills", "projects"].includes(cmd)) {
+    setActiveSection(cmd);
+    return \`Opening \${cmd} section...\`;
+  }
+  
+  // Fun commands
+  if (cmd === "matrix") {
+    return <MatrixAnimation />;
+  }
+  
+  if (cmd === "joke") {
+    return programmingJokes[Math.floor(Math.random() * programmingJokes.length)];
+  }
+  
+  // File system navigation
+  if (cmd === "cd") {
+    return navigateToDirectory(args[0] || "~");
+  }
+  
+  // Command not found
+  return \`Command not found: \${command}. Type 'help' for available commands.\`;
+};`}
+</CodeBlock>
+
+This simple function is what powers the entire terminal experience - parsing user input, determining the appropriate action, and returning the result.
+
+<TerminalDemo />
+
+## Cool Features I'm Proud Of
+
+### Interactive File System
+
+Navigate through a virtual file system using commands like `cd`, `ls`, and `cat` – just like a real Unix environment. I've created a JSON structure that mimics a file system, complete with directories, files, and permissions.
+
+### Mobile Command Interface
+
+For touch users, there's a special command bar that appears only on mobile devices, making the experience smooth across all devices. I knew that typing commands on phones would be a pain, so I added tap-friendly shortcuts.
+
+<Callout type="tip">
+  Try visiting the site on your phone! The command interface automatically
+  adapts to touch input.
+</Callout>
+
+### Fun Easter Eggs
+
+Try commands like `matrix`, `joke`, or `ascii-art` to discover playful elements hidden throughout the experience. I've always loved finding Easter eggs in software, so I made sure to include plenty.
+
+### Resume Access
+
+Potential employers can easily access my resume with a simple `resume` command. It's the perfect blend of playful and practical.
+
+## Challenges Along the Way
+
+Building this wasn't easy. I struggled with:
+
+- Balancing authentic terminal feel with good user experience
+- Making it work well on mobile (terminals weren't designed for touch!)
+- Browser compatibility issues
+- Performance optimization for animations
+
+There were definitely moments when I questioned my sanity. A standard portfolio would have been much simpler, but where's the fun in that?
+
+## Help Make It Better!
+
+This is where you come in! The portfolio is a living project, and I'd love your contributions:
+
+### Found a Bug?
+
+Let me know through GitHub issues, the `feedback` command in the terminal, or my contact form.
+
+### Have Ideas?
+
+I'm considering adding terminal games, theme switching, and more interactive visualizations. But I'd love to hear your suggestions!
+
+### Want to Code?
+
+The project is open source. Fork it, improve it, and submit a pull request. I welcome contributions of all sizes.
+
+## What's Next?
+
+This portfolio will continue to evolve. Upcoming plans include:
+
+- More sophisticated autocomplete
+- Interactive visualizations of my development journey
+- Additional fun commands and Easter eggs
+
+Building this terminal portfolio has been a labor of love. It's more than just a showcase—it's how I approach problems and find joy in the details.
+
+Thanks for reading about my digital playground. I hope you'll explore the terminal, try some commands, and maybe even contribute to its evolution. The best software is built collaboratively, and I can't wait to see how we can make this terminal portfolio even better together.
+
+Now, if you'll excuse me, I have a few more commands to implement...
+
+<Callout type="info">
+  Want to check out the code or contribute? You can find the project on GitHub:
+  [github.com/username/terminal-portfolio](https://github.com/username/terminal-portfolio)
+</Callout>
+
+export default ({ children }) => (
+  <BlogLayout meta={frontMatter}>{children}</BlogLayout>
+);

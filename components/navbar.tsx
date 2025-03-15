@@ -123,7 +123,6 @@ export default function NavBar({
               </button>
             ))}
 
-
             <Button
               variant="outline"
               size="sm"
@@ -213,6 +212,42 @@ export default function NavBar({
                 <span>{item.label}</span>
               </button>
             ))}
+
+            <div className="flex flex-wrap items-center gap-4 pl-4">
+              {/* 3D Portfolio Button */}
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={handle3DPortfolio}
+                className={`${theme.textBlueClass} hover:${theme.textGreenClass} rounded`}
+              >
+                <Cube className="h-4 w-4 mr-1" />
+                3D Portfolio
+              </Button>
+
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={handleBlog}
+                className={`${theme.textBlueClass} hover:${theme.textGreenClass} rounded`}
+              >
+                <BookOpen className="h-4 w-4" />
+                Blog
+              </Button>
+
+              {/* Terminal Toggle Button */}
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={toggleTerminalMode}
+                className={`ml-2 ${
+                  showTerminal ? theme.textGreenClass : theme.textClass
+                } rounded`}
+              >
+                <Terminal className="h-4 w-4 mr-1" />
+                {showTerminal ? "Hide Terminal" : "Show Terminal"}
+              </Button>
+            </div>
           </div>
         </div>
       )}

@@ -51,7 +51,7 @@ export default function ContactSection() {
     "location": "Fez, Morocco"
   },
   "social": {
-    "github": "https://github.com/khalid-echchahid",
+    "github": "https://github.com/khalidEchchahid",
     "linkedin": "https://linkedin.com/in/khalid-echchahid"
   },
   "preferred_contact_method": "email"

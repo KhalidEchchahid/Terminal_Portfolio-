@@ -9,7 +9,7 @@ export default function TerminalFooter() {
 
   return (
     <div
-      className={`flex z-10 items-center justify-between py-2 px-4 ${theme.bgHeaderClass} text-terminal-text-dim text-xs rounded-b-lg mt-1 border ${theme.borderClass} border-t-0`}
+      className={`flex z-10 items-center justify-between flex-wrap gap-2 py-2 px-4 ${theme.bgHeaderClass} text-terminal-text-dim text-xs rounded-b-lg mt-1 border ${theme.borderClass} border-t-0`}
     >
       <div className="flex items-center space-x-2">
         <TerminalIcon className="h-3 w-3" />

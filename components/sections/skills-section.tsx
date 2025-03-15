@@ -11,7 +11,7 @@ export default function SkillsSection() {
   "languages": [
     { "name": "JavaScript", "proficiency": "Advanced" },
     { "name": "Java", "proficiency": "Advanced" },
-    { "name": "C", "proficiency": "Intermediate" },
+    { "name": "C", "proficiency": "Advanced" },
     { "name": "C++", "proficiency": "Intermediate" },
     { "name": "PHP", "proficiency": "Intermediate" }
   ],
@@ -29,7 +29,7 @@ export default function SkillsSection() {
   ],
   "databases": [
     { "name": "MongoDB", "proficiency": "Advanced" },
-    { "name": "PostgreSQL", "proficiency": "Intermediate" },
+    { "name": "PostgreSQL", "proficiency": "Advanced" },
     { "name": "MySQL", "proficiency": "Intermediate" },
     { "name": "Oracle", "proficiency": "Intermediate" }
   ],
@@ -74,7 +74,7 @@ export default function SkillsSection() {
       skills: [
         { name: "JavaScript", proficiency: "Advanced" },
         { name: "Java", proficiency: "Advanced" },
-        { name: "C", proficiency: "Intermediate" },
+        { name: "C", proficiency: "Advanced" },
         { name: "C++", proficiency: "Intermediate" },
         { name: "PHP", proficiency: "Intermediate" },
       ],

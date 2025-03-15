@@ -2,6 +2,8 @@
 
 import { useState, useCallback } from "react"
 import type { TerminalOutput } from "@/contexts/terminal-context"
+import ResumeDownloader from "@/components/terminal/resume-downloader"
+import { AsciiArt, MatrixEffect, WeatherForecast } from "@/components/terminal/fun-commands"
 
 interface UseTerminalCommandsProps {
   activeSection: string
@@ -15,8 +17,8 @@ export function useTerminalCommands({ activeSection, setActiveSection, addToOutp
 
   // Define all available commands
   const COMMANDS = {
-    BASIC: ["home", "about", "skills", "projects", "contact", "help", "clear", "social", "exit", "files", "blog"],
-    EASTER_EGGS: ["launch_portfolio", "coffee", "joke", "github", "linkedin", "resume", "3d_portfolio"],
+    BASIC: ["home", "about", "skills", "projects", "contact","resume", "help", "clear", "social", "exit", "files", "blog"],
+    EASTER_EGGS: ["launch_portfolio", "coffee", "joke", "github", "linkedin", "open resume", "3d_portfolio"],
     SYSTEM: ["ls", "cat", "pwd", "cd", "echo", "man", "whoami", "date", "history", "edit", "nano", "vim"],
     FILE_SYSTEM: {
       directories: ["projects", "skills"],
@@ -160,6 +162,15 @@ export function useTerminalCommands({ activeSection, setActiveSection, addToOutp
                   </div>
                 ))}
               </div>
+              <div className="mt-3 mb-2 text-terminal-yellow font-bold">Easter eggs:</div>
+              <div className="grid grid-cols-2 md:grid-cols-3 gap-x-4 gap-y-1 text-terminal-text-dim">
+                {COMMANDS.EASTER_EGGS.map((c) => (
+                  <div key={c} className="flex items-center">
+                    <span className="text-terminal-blue mr-2">→</span>
+                    <span className="text-terminal-text">{c}</span>
+                  </div>
+                ))}
+              </div>
               <div className="mt-3 text-terminal-text-dim">
                 <span className="text-terminal-yellow">TIP:</span> Use <span className="text-terminal-green">edit</span>
                 , <span className="text-terminal-green">nano</span> or <span className="text-terminal-green">vim</span>{" "}
@@ -231,7 +242,7 @@ export function useTerminalCommands({ activeSection, setActiveSection, addToOutp
               <span className="text-terminal-yellow">clear</span> instead.
               <div className="mt-1 text-xs text-terminal-text-dim">
                 <span className="text-terminal-yellow">TIP:</span> Try typing{" "}
-                <span className="text-terminal-green">launch_portfolio</span> for a special experience
+                <span className="text-terminal-green">launch_portfolio</span> and scroll up for a special experience
               </div>
             </div>
           ),
@@ -773,6 +784,11 @@ A web application for collaboration within companies, similar to Stack Overflow.
             edit: "Open a file in the editor",
             nano: "Open a file in the editor (alias for edit)",
             vim: "Open a file in the editor (alias for edit)",
+            resume : "Resume the download of my resume",
+            "open resume": "Open my resume in a new tab",
+            "ascii-art": "Display an ASCII art", 
+            matrix: "Display the matrix effect",
+            weather: "Display the weather forecast",
           }
 
           addToOutputHistory({
@@ -803,6 +819,73 @@ A web application for collaboration within companies, similar to Stack Overflow.
         setIsProcessing(false)
         return
       }
+
+      // resume download command
+    if (cmd === "resume") {
+      addToOutputHistory({
+        type: "success",
+        content: <ResumeDownloader />,
+        id: `resume-${Date.now()}`,
+      })
+      setIsProcessing(false)
+      return
+    }
+
+    // Open resume command
+    if (cmd === "open resume") {
+      addToOutputHistory({
+        type: "success",
+        content: (
+          <div>
+            <div className="flex items-center mb-2">
+              <span className="text-terminal-green">➜</span> Opening resume in browser...
+            </div>
+            <div className="text-xs text-terminal-text-dim mt-1">
+              <span className="text-terminal-yellow">INFO:</span> Your resume has been opened in a new tab.
+            </div>
+          </div>
+        ),
+        id: `open-resume-${Date.now()}`,
+      })
+
+      // Open the resume in a new tab
+      if (typeof window !== "undefined") {
+        window.open("/ECV.pdf", "_blank")
+      }
+
+      setIsProcessing(false)
+      return
+    }
+
+
+    if (cmd === "ascii-art") {
+      addToOutputHistory({
+        type: "success",
+        content: <AsciiArt />,
+        id: `ascii-art-${Date.now()}`,
+      })
+      setIsProcessing(false)
+      return
+    }
+
+    if (cmd === "matrix") {
+      addToOutputHistory({
+        type: "success",
+        content: <MatrixEffect />,
+        id: `matrix-${Date.now()}`,
+      })
+      setIsProcessing(false)
+      return
+    }
+    if (cmd === "weather") {
+      addToOutputHistory({
+        type: "success",
+        content: <WeatherForecast />,
+        id: `weather-${Date.now()}`,
+      })
+      setIsProcessing(false)
+      return
+    }
 
       // Unknown command
       addToOutputHistory({

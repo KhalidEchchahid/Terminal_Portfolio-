@@ -50,11 +50,11 @@ export default function HomeSection() {
   },
   skills: [
     "React", "Next.js", "Spring Boot", "MongoDB", "PostgreSQL",
-    "C/C++", "Java", "JavaScript", "Tailwind CSS", "Docker"
+    "C/C++", "Java", "JavaScript", "Tailwind CSS", "Docker" , "Git" , "Express.js" , "and much more..."
   ],
   contact: {
     email: "echchahidkhalid7@gmail.com",
-    github: "https://github.com/khalid-echchahid",
+    github: "https://github.com/khalidEchchahid",
     linkedin: "https://linkedin.com/in/khalid-echchahid"
   }
 };`
@@ -115,7 +115,7 @@ export default function HomeSection() {
           </p>
           <p className="mt-2 text-terminal-text-dim text-sm">
             <span className="text-terminal-purple">TIP:</span> Try typing{" "}
-            <span className="text-terminal-green">launch_portfolio</span> for an interactive experience!
+            <span className="text-terminal-green">launch_portfolio</span> and scroll up (until I fix this) for an interactive experience!
           </p>
         </motion.div>
       </div>

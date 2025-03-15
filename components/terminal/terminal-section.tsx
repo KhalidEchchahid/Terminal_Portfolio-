@@ -6,7 +6,7 @@ import SkillsSection from "../sections/skills-section"
 import ProjectsSection from "../sections/project-section"
 import ContactSection from "../sections/contact-section"
 import FileExplorer from "./file-explorer"
-
+import ResumeDownloader from "./resume-downloader"
 interface TerminalSectionProps {
   section: string
 }
@@ -26,6 +26,8 @@ export default function TerminalSection({ section }: TerminalSectionProps) {
       return <ContactSection />
     case "files":
       return <FileExplorer />
+    case "resume":
+      return <ResumeDownloader />
     default:
       return <HomeSection />
   }

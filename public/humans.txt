@@ -1,11 +1,11 @@
 /* TEAM */
 Developer: Khalid Echchahid
-GitHub: https://github.com/khalidechchahid
+GitHub: https://github.com/khalidEchchahid
 Twitter: @khalidechchahid
 Location: Morocco
 
 /* SITE */
-Last update: 2024/03/12
+Last update: 2025/03/12
 Standards: HTML5, CSS3, JavaScript, TypeScript
 Components: Next.js, React, Tailwind CSS, shadcn/ui
 Software: VS Code, Git

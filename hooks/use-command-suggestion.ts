@@ -23,6 +23,7 @@ export function useCommandSuggestions(input: string) {
     "github",
     "linkedin",
     "resume",
+    "open resume",
     "3d_portfolio",
     "ls",
     "cat",
@@ -34,6 +35,9 @@ export function useCommandSuggestions(input: string) {
     "date",
     "history",
     "files",
+    "ascii-art",
+    "weather",
+    "matrix",
   ]
 
   // Get suggestions based on input

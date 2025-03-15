@@ -23,41 +23,54 @@ export default function ProjectsSection() {
         "PostgreSQL",
         "RabbitMQ",
       ],
-      github: "https://github.com/username/university-collaboration-platform",
+      github: "https://github.com/KhalidEchchahid/full-project",
       codeSnippet: `
 // Project architecture - Microservices implementation
-@SpringBootApplication
-@EnableEurekaClient
-@EnableFeignClients
-public class CollaborationServiceApplication {
-  public static void main(String[] args) {
-    SpringApplication.run(CollaborationServiceApplication.class, args);
-  }
-  
-  @Bean
-  @LoadBalanced
-  public RestTemplate restTemplate() {
-    return new RestTemplate();
-  }
-}
+@Component
+public class AuthenticationFilter extends AbstractGatewayFilterFactory<AuthenticationFilter.Config> {
 
-@RestController
-@RequestMapping("/api/collaboration")
-public class CollaborationController {
-  @Autowired
-  private CollaborationService service;
-  
-  @PostMapping("/request")
-  public ResponseEntity<CollaborationRequest> createRequest(
-      @RequestBody CollaborationRequest request) {
-    return ResponseEntity.ok(service.createRequest(request));
-  }
-  
-  @GetMapping("/requests/{studentId}")
-  public ResponseEntity<List<CollaborationRequest>> getStudentRequests(
-      @PathVariable Long studentId) {
-    return ResponseEntity.ok(service.getStudentRequests(studentId));
-  }
+    @Autowired
+    private RouteValidator validator;
+
+    //    @Autowired
+//    private RestTemplate template;
+    @Autowired
+    private JwtUtil jwtUtil;
+
+    public AuthenticationFilter() {
+        super(Config.class);
+    }
+
+    @Override
+    public GatewayFilter apply(Config config) {
+        return ((exchange, chain) -> {
+            if (validator.isSecured.test(exchange.getRequest())) {
+                //header contains token or not
+                if (!exchange.getRequest().getHeaders().containsKey(HttpHeaders.AUTHORIZATION)) {
+                    throw new RuntimeException("missing authorization header");
+                }
+
+                String authHeader = exchange.getRequest().getHeaders().get(HttpHeaders.AUTHORIZATION).get(0);
+                if (authHeader != null && authHeader.startsWith("Bearer ")) {
+                    authHeader = authHeader.substring(7);
+                }
+                try {
+//                    //REST call to AUTH service
+//                    template.getForObject("http://IDENTITY-SERVICE/validate?token" + authHeader, String.class);
+                    jwtUtil.validateToken(authHeader);
+
+                } catch (Exception e) {
+                    System.out.println("invalid access...!");
+                    throw new RuntimeException("un authorized access to application");
+                }
+            }
+            return chain.filter(exchange);
+        });
+    }
+
+    public static class Config {
+
+    }
 }`,
       language: "java",
     },
@@ -67,56 +80,53 @@ public class CollaborationController {
       description:
         "A web application for collaboration within companies, similar to Stack Overflow, featuring an announcement system, event organization, and blogs for internal communication.",
       technologies: ["Next.js 14", "NextAuth", "MongoDB"],
-      github: "https://github.com/username/intra-enterprise-collaboration",
+      github: "https://github.com/KhalidEchchahid/Intra-entreprise_nextjs14/tree/main",
       codeSnippet: `
 // Authentication implementation with NextAuth
-import NextAuth from 'next-auth';
-import { MongoDBAdapter } from '@next-auth/mongodb-adapter';
-import clientPromise from '@/lib/mongodb';
+export { default } from "next-auth/middleware";
 
-export default NextAuth({
-  adapter: MongoDBAdapter(clientPromise),
-  providers: [
-    CredentialsProvider({
-      name: 'Credentials',
-      credentials: {
-        email: { label: "Email", type: "email" },
-        password: { label: "Password", type: "password" }
-      },
-      async authorize(credentials) {
-        const user = await db.user.findUnique({
-          where: { email: credentials.email }
-        });
-        
-        if (user && await bcrypt.compare(credentials.password, user.password)) {
-          return { id: user.id, name: user.name, email: user.email, role: user.role };
-        }
-        return null;
+import { NextResponse } from "next/server";
+import { getToken } from "next-auth/jwt";
+
+export async function middleware(request : any) {
+  const token = await getToken({ req: request, secret: process.env.NEXTAUTH_SECRET });
+  
+  if (!token) return NextResponse.redirect(new URL("/login", request.url));
+
+  // Check the role and redirect based on the role
+  switch (token.role) {
+    case "CLIENT":
+      if (
+        !request.nextUrl.pathname.startsWith("/") &&
+        !request.nextUrl.pathname.startsWith("/question") &&
+        !request.nextUrl.pathname.startsWith("/profile") &&
+        !request.nextUrl.pathname.startsWith("/ask-question") &&
+        !request.nextUrl.pathname.startsWith("/community") &&
+        !request.nextUrl.pathname.startsWith("/tags") &&
+        !request.nextUrl.pathname.startsWith("/community") 
+      ) {
+        return NextResponse.redirect(new URL("/", request.url));
       }
-    }),
-  ],
-  callbacks: {
-    async jwt({ token, user }) {
-      if (user) {
-        token.id = user.id;
-        token.role = user.role;
+      break;
+    case "ADMIN":
+      // Add the paths that the ADMIN can access here
+      if (!request.nextUrl.pathname.startsWith("/admin")) {
+        return NextResponse.redirect(new URL("/admin", request.url));
       }
-      return token;
-    },
-    async session({ session, token }) {
-      session.user.id = token.id;
-      session.user.role = token.role;
-      return session;
-    }
-  },
-  session: {
-    strategy: 'jwt',
-  },
-  pages: {
-    signIn: '/auth/signin',
-    error: '/auth/error',
+      break;
+    default:
+      return NextResponse.redirect(new URL("/login", request.url));
   }
-});`,
+}
+
+
+
+export const config = {
+  matcher: [
+    // Match all routes except the ones that start with /login and api and the static folder
+    "/((?!api|_next/static|_next/image|favicon.ico|login).*)",
+  ],
+};`,
       language: "javascript",
     },
     {
@@ -125,62 +135,78 @@ export default NextAuth({
       description:
         "A 2D fighting game developed from scratch using the C programming language and GTK for the graphical user interface. The game includes various mechanics, characters, and visual effects.",
       technologies: ["C", "GTK Library"],
-      github: "https://github.com/username/gladiator-game",
+      github: "https://github.com/KhalidEchchahid/gladiator-game",
       codeSnippet: `
-// Game loop and collision detection
-void game_update(GameState *state) {
-    // Update player positions based on input
-    if (state->player1.isMovingRight && !state->player1.isAttacking) {
-        state->player1.x += PLAYER_SPEED;
-        state->player1.currentSprite = SPRITE_WALK;
-        state->player1.facingRight = TRUE;
-    } 
-    // ... more movement code ...
-    
-    // Check for collisions between players
-    if (check_collision(&state->player1, &state->player2)) {
-        // Handle collision (push back, etc.)
-        if (state->player1.isAttacking && !state->player2.isBlocking) {
-            apply_damage(&state->player2, state->player1.attackPower);
-            create_hit_effect(state, state->player2.x, state->player2.y);
-            play_sound(SOUND_HIT);
-        } else if (state->player2.isBlocking) {
-            play_sound(SOUND_BLOCK);
+// Game loop , collision detection and animation update
+gboolean update_animation(gpointer data) {
+    if (is_paused || is_game_over) {
+        return TRUE;
+    }
+
+    // Ensure the gladiator stops all actions if dead
+    if (gladiator.health <= 0) {
+        gladiator.current_action = 9; // Dying action
+        if (gladiator.current_frame < gladiator.action_frames.dying - 1) {
+            gladiator.current_frame++;
+        }
+        // Stay on the last frame of the dying animation
+        if (gladiator.current_frame >= gladiator.action_frames.dying - 1) {
+            gladiator.current_frame = gladiator.action_frames.dying - 1;
+        }
+        // Update the action of the machine to standing when gladiator dies
+        machine.current_action = 0; // Standing action
+    } else {
+        update_health_label(gladiator.health, gladiator_health_label);
+
+        int frame_count = 0;
+        switch (gladiator.current_action) {
+            case 0: frame_count = gladiator.action_frames.standing; break;
+            case 1: frame_count = gladiator.action_frames.walking; break;
+            case 2: frame_count = gladiator.action_frames.running; break;
+            case 3: frame_count = gladiator.action_frames.attacking1; break;
+            case 4: frame_count = gladiator.action_frames.attacking2; break;
+            case 5: frame_count = gladiator.action_frames.attacking3; break;
+            case 6: frame_count = gladiator.action_frames.defending; break;
+            case 7: frame_count = gladiator.action_frames.jumping; break;
+            case 8: frame_count = gladiator.action_frames.hurting; break;
+            case 9: frame_count = gladiator.action_frames.dying; break;
+        }
+
+        int x = (gladiator.current_frame % frame_count) * gladiator.sprite_width;
+        int y = gladiator.current_action * gladiator.sprite_height;
+        GdkPixbuf *frame = gdk_pixbuf_new_subpixbuf(gladiator.sprite_sheet, x, y, gladiator.sprite_width, gladiator.sprite_height);
+        gtk_image_set_from_pixbuf(gladiator.image, frame);
+        gtk_fixed_move(GTK_FIXED(data), GTK_WIDGET(gladiator.image), gladiator.x_position, gladiator.y_position);
+
+        // Check if gladiator is dying
+        if (gladiator.current_action == 9 && gladiator.current_frame == gladiator.action_frames.dying - 1) {
+            is_game_over = TRUE; // Set game over state
+        }
+        gladiator.current_frame++;
+
+        if (gladiator.current_frame >= frame_count) {
+            gladiator.current_frame = 0;
+        }
+
+        // Handle gladiator movement
+        if (!(gladiator.x_position >= 1900 - gladiator.sprite_width)) {
+            if (gladiator.current_action == 1) {
+                gladiator.x_position += gladiator.speed / 2;
+            } else if (gladiator.current_action == 2) {
+                gladiator.x_position += gladiator.speed;
+            } else if (gladiator.current_action == 7) {
+                if (is_backward && gladiator.x_position >= 17) {
+                    gladiator.x_position -= gladiator.speed;
+                } else {
+                    gladiator.x_position += gladiator.speed - 2;
+                }
+            }
         }
     }
-    
-    // Update animations and effects
-    update_animations(state);
-    update_effects(state);
-    
-    // Check win conditions
-    if (state->player1.health <= 0 || state->player2.health <= 0) {
-        state->gameOver = TRUE;
-    }
-}
 
-gboolean on_draw(GtkWidget *widget, cairo_t *cr, GameState *state) {
-    // Clear the surface
-    cairo_set_source_rgb(cr, 0.1, 0.1, 0.1);
-    cairo_paint(cr);
-    
-    // Draw the background
-    draw_background(cr, state);
-    
-    // Draw players
-    draw_player(cr, &state->player1);
-    draw_player(cr, &state->player2);
-    
-    // Draw UI elements
-    draw_health_bars(cr, state);
-    draw_effects(cr, state);
-    
-    if (state->gameOver) {
-        draw_game_over(cr, state);
-    }
-    
-    return FALSE;
-}`,
+    return TRUE;
+}
+`,
       language: "c",
     },
     {
@@ -189,87 +215,47 @@ gboolean on_draw(GtkWidget *widget, cairo_t *cr, GameState *state) {
       description:
         "A Next.js web application that visualizes Dijkstra's Algorithm and Breadth-First Search (BFS) for maze pathfinding, with backend processing handled by a C++ web server.",
       technologies: ["C++", "Next.js 15", "Tailwind CSS"],
-      github: "https://github.com/username/maze-pathfinder-frontend",
-      backendGithub: "https://github.com/username/maze-pathfinder-backend",
+      github: "https://github.com/KhalidEchchahid/Muze-Dijkstra-BFS-nextjs-c-",
+      backendGithub: "https://github.com/KhalidEchchahid/Muze-backend/blob/main",
       codeSnippet: `
 // C++ Implementation of Dijkstra's Algorithm for maze pathfinding
-std::vector<Point> dijkstra(const Maze& maze, Point start, Point end) {
-    const int rows = maze.getRows();
-    const int cols = maze.getCols();
-    
-    // Priority queue for Dijkstra's algorithm
-    std::priority_queue<Node, std::vector<Node>, std::greater<Node>> pq;
-    
-    // Distance matrix
-    std::vector<std::vector<int>> dist(rows, std::vector<int>(cols, INT_MAX));
-    
-    // Parent matrix to reconstruct path
-    std::vector<std::vector<Point>> parent(rows, std::vector<Point>(cols, {-1, -1}));
-    
-    // Initialize start node
-    dist[start.x][start.y] = 0;
-    pq.push({start, 0});
-    
-    // Directions: up, right, down, left
-    const int dx[] = {-1, 0, 1, 0};
-    const int dy[] = {0, 1, 0, -1};
-    
-    while (!pq.empty()) {
-        Node current = pq.top();
-        pq.pop();
-        
-        Point pos = current.pos;
-        
-        // If we reached the end point
-        if (pos.x == end.x && pos.y == end.y) {
-            break;
-        }
-        
-        // Skip if we've found a better path already
-        if (current.dist > dist[pos.x][pos.y]) {
-            continue;
-        }
-        
-        // Explore all four directions
-        for (int i = 0; i < 4; i++) {
-            int nx = pos.x + dx[i];
-            int ny = pos.y + dy[i];
-            
-            // Check if valid and not a wall
-            if (nx >= 0 && nx < rows && ny >= 0 && ny < cols && 
-                !maze.isWall(nx, ny)) {
-                
-                int newDist = dist[pos.x][pos.y] + 1;
-                
-                // If we found a better path
-                if (newDist < dist[nx][ny]) {
-                    dist[nx][ny] = newDist;
-                    parent[nx][ny] = pos;
-                    pq.push({{nx, ny}, newDist});
+json dijkstra() {
+        std::priority_queue<std::pair<int, Cell*>, std::vector<std::pair<int, Cell*>>, std::greater<>> pq;
+        startCell->distance = 0;
+        pq.push({ 0, startCell });
+
+        std::vector<std::vector<int>> visited;
+        std::vector<std::vector<int>> path;
+
+        while (!pq.empty()) {
+            Cell* current = pq.top().second;
+            pq.pop();
+
+            if (current == endCell) {
+                while (current != startCell) {
+                    path.push_back({ current->row, current->col });
+                    current = current->previous;
+                }
+                std::reverse(path.begin(), path.end());
+                return { {"visited", visited}, {"path", path} };
+            }
+
+            if (current->state == VISITED) continue;
+            current->state = VISITED;
+            visited.push_back({ current->row, current->col });
+
+            for (Cell* neighbor : getNeighbors(current)) {
+                int newDist = current->distance + 1;
+                if (newDist < neighbor->distance) {
+                    neighbor->distance = newDist;
+                    neighbor->previous = current;
+                    pq.push({ newDist, neighbor });
                 }
             }
         }
-    }
-    
-    // Reconstruct the path
-    std::vector<Point> path;
-    Point current = end;
-    
-    while (!(current.x == start.x && current.y == start.y)) {
-        path.push_back(current);
-        current = parent[current.x][current.y];
-        
-        // No path found
-        if (current.x == -1) {
-            return {};
-        }
-    }
-    
-    path.push_back(start);
-    std::reverse(path.begin(), path.end());
-    
-    return path;
-}`,
+
+        return { {"visited", visited}, {"path", path} };
+    }`,
       language: "cpp",
     },
   ]
