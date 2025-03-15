@@ -124,7 +124,7 @@ export default function ProjectsSection() {
       id: 4,
       title: "Maze Pathfinder",
       description:
-        "A Next.js web application that visualizes Dijkstra's Algorithm and Breadth-First Search (BFS) for maze pathfinding, with backend processing handled by a C++ web server.",
+        "A Next.js web application that visualizes Dijkstra &apos; s Algorithm and Breadth-First Search (BFS) for maze pathfinding, with backend processing handled by a C++ web server.",
       technologies: ["C++", "Next.js 15", "Tailwind CSS"],
       image: "/placeholder.svg?height=600&width=800&text=Maze+Pathfinder",
       color: "#f38ba8", // Terminal Red
@@ -189,7 +189,7 @@ export default function ProjectsSection() {
           My <span className="text-gradient-1">Projects</span>
         </h2>
         <p className="text-muted-foreground max-w-2xl mx-auto">
-          Here are some of the projects I've worked on. Each one represents a unique challenge and showcases different
+          Here are some of the projects I have worked on. Each one represents a unique challenge and showcases different
           aspects of my skills and expertise.
         </p>
       </motion.div>

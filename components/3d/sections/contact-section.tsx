@@ -56,7 +56,7 @@ export default function ContactSection() {
     e.preventDefault()
     console.log("Form submitted:", formData)
     // Here you would typically send the form data to your backend
-    alert("Message sent! I'll get back to you soon.")
+    alert("Message sent! I will get back to you soon.")
     setFormData({
       name: "",
       email: "",
@@ -239,7 +239,7 @@ export default function ContactSection() {
                   className="flex items-center p-3 glass hover:bg-primary/10 rounded-lg transition-colors"
                 >
                   <Github className="h-5 w-5 text-terminal-purple mr-3" />
-                  <span>github.com/khalid-echchahid</span>
+                  <span>github.com/khalidEchchahid</span>
                 </a>
 
                 <a

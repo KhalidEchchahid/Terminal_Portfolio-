@@ -85,7 +85,7 @@ export default function SkillsSection() {
           My <span className="text-gradient-1">Skills</span>
         </h2>
         <p className="text-muted-foreground max-w-2xl mx-auto">
-          I've developed a diverse set of skills throughout my journey as a developer. Here's a visualization of my
+          I have developed a diverse set of skills throughout my journey as a developer. Here is a visualization of my
           technical expertise and proficiency levels.
         </p>
       </motion.div>
