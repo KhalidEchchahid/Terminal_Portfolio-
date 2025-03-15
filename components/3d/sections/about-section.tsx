@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button"
 import { Github, Linkedin, Mail, MapPin, Calendar, GraduationCap, Briefcase } from "lucide-react"
 import { Canvas } from "@react-three/fiber"
 import { Float, Text3D, OrbitControls, Environment } from "@react-three/drei"
+import Link from "next/link"
 
 function HeroText() {
   return (
@@ -50,7 +51,7 @@ export default function AboutSection() {
             Hi, I&apos;m <span className="text-gradient-1">Khalid</span>
           </h1>
           <h2 className="text-2xl md:text-3xl lg:text-4xl font-semibold mb-6 text-terminal-text-dim">
-            Full-Stack <span className="text-gradient-2">Developer</span>
+            Software <span className="text-gradient-2">Engineer</span>
           </h2>
           <p className="text-lg mb-8 text-terminal-text-dim max-w-lg">
             I build innovative web applications with modern technologies. Currently pursuing a degree in Software
@@ -58,16 +59,22 @@ export default function AboutSection() {
           </p>
 
           <div className="flex flex-wrap gap-4">
-            <Button className="btn-gradient-1">
-              <Mail className="mr-2 h-4 w-4" /> Contact Me
-            </Button>
-            <Button variant="outline" className="border-terminal-purple hover:bg-terminal-purple/10">
-              <Github className="mr-2 h-4 w-4" /> GitHub
-            </Button>
-            <Button variant="outline" className="border-terminal-purple hover:bg-terminal-purple/10">
-              <Linkedin className="mr-2 h-4 w-4" /> LinkedIn
-            </Button>
-          </div>
+      <Button asChild className="btn-gradient-1">
+        <Link href="mailto:khalidechchahid@gmail.com">
+          <Mail className="mr-2 h-4 w-4" /> Contact Me
+        </Link>
+      </Button>
+      <Button asChild variant="outline" className="border-terminal-purple hover:bg-terminal-purple/10">
+        <Link href="https://github.com/khalidEchchahid" target="_blank" rel="noopener noreferrer">
+          <Github className="mr-2 h-4 w-4" /> GitHub
+        </Link>
+      </Button>
+      <Button asChild variant="outline" className="border-terminal-purple hover:bg-terminal-purple/10">
+        <Link href="https://linkedin.com/in/khalid-echchahid" target="_blank" rel="noopener noreferrer">
+          <Linkedin className="mr-2 h-4 w-4" /> LinkedIn
+        </Link>
+      </Button>
+    </div>
         </motion.div>
 
         <motion.div
@@ -141,7 +148,7 @@ export default function AboutSection() {
             <ul className="list-disc pl-5 space-y-1 text-sm text-terminal-text-dim mt-2">
               <li>Built custom e-commerce platforms and admin dashboards</li>
               <li>Handled end-to-end development from UI design to MongoDB implementation</li>
-              <li>Developed systems for tracking products, orders, and customers</li>
+              <li>Developed systems for tracking products and orders</li>
             </ul>
           </div>
         </motion.div>

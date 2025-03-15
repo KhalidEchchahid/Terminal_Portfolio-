@@ -44,7 +44,7 @@ export default function ProjectsSection() {
       ],
       image: "/architecture_diagram.png?height=600&width=800&text=University+Collaboration+Platform",
       color: "#cba6f7", // Terminal Purple
-      githubUrl: "https://github.com/khalid-echchahid/university-collaboration-platform",
+      githubUrl: "https://github.com/KhalidEchchahid/full-project",
       features: [
         {
           title: "Secure Authentication",
@@ -70,9 +70,9 @@ export default function ProjectsSection() {
       description:
         "A web application for collaboration within companies, similar to Stack Overflow, featuring an announcement system, event organization, and blogs for internal communication.",
       technologies: ["Next.js 14", "NextAuth", "MongoDB"],
-      image: "/architecture_diagram.png?height=600&width=800&text=Intra-Enterprise+Collaboration",
+      image: "/images/intra-entreprise.png?height=600&width=800&text=Intra-Enterprise+Collaboration",
       color: "#89b4fa", // Terminal Blue
-      githubUrl: "https://github.com/khalid-echchahid/intra-enterprise-collab",
+      githubUrl: "https://github.com/KhalidEchchahid/Intra-entreprise_nextjs14",
       features: [
         {
           title: "Knowledge Base",
@@ -98,9 +98,9 @@ export default function ProjectsSection() {
       description:
         "A 2D fighting game developed from scratch using the C programming language and GTK for the graphical user interface. The game includes various mechanics, characters, and visual effects.",
       technologies: ["C", "GTK Library"],
-      image: "/placeholder.svg?height=600&width=800&text=Gladiator+Fighting+Game",
+      image: "/images/gladiator-game.png?height=600&width=800&text=Gladiator+Fighting+Game",
       color: "#a6e3a1", // Terminal Green
-      githubUrl: "https://github.com/khalid-echchahid/gladiator-game",
+      githubUrl: "https://github.com/khalidEchchahid/gladiator-game",
       features: [
         {
           title: "Custom Physics Engine",
@@ -126,9 +126,9 @@ export default function ProjectsSection() {
       description:
         "A Next.js web application that visualizes Dijkstra &apos; s Algorithm and Breadth-First Search (BFS) for maze pathfinding, with backend processing handled by a C++ web server.",
       technologies: ["C++", "Next.js 15", "Tailwind CSS"],
-      image: "/placeholder.svg?height=600&width=800&text=Maze+Pathfinder",
+      image: "/images/path-finder.png?height=600&width=800&text=Maze+Pathfinder",
       color: "#f38ba8", // Terminal Red
-      githubUrl: "https://github.com/khalid-echchahid/maze-pathfinder",
+      githubUrl: "https://github.com/KhalidEchchahid/Muze-Dijkstra-BFS-nextjs-c-",
       features: [
         {
           title: "Algorithm Visualization",
@@ -144,7 +144,7 @@ export default function ProjectsSection() {
         },
         {
           title: "C++ Integration",
-          description: "High-performance backend calculations with WebAssembly integration",
+          description: "High-performance backend calculations with c++ integration",
         },
       ],
     },
@@ -307,7 +307,7 @@ export default function ProjectsSection() {
                     <Github className="mr-2 h-4 w-4" /> GitHub
                   </Button>
 
-                  <Button
+                  {/* <Button
                     variant="outline"
                     className="flex-1"
                     style={{
@@ -317,7 +317,7 @@ export default function ProjectsSection() {
                     onClick={() => window.open(projects[activeProject].githubUrl, "_blank")}
                   >
                     <ExternalLink className="mr-2 h-4 w-4" /> Live Demo
-                  </Button>
+                  </Button> */}
                 </div>
               </div>
             </div>

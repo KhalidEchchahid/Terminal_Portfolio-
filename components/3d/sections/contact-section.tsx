@@ -176,7 +176,7 @@ export default function ContactSection() {
                 />
               </div>
 
-              <Button type="submit" className="w-full btn-gradient-1">
+              <Button disabled type="submit" className="w-full btn-gradient-1">
                 <Send className="mr-2 h-4 w-4" /> Send Message
               </Button>
             </form>
@@ -233,7 +233,7 @@ export default function ContactSection() {
 
               <div className="flex flex-col space-y-4">
                 <a
-                  href="https://github.com/khalid-echchahid"
+                  href="https://github.com/khalidEchchahid"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center p-3 glass hover:bg-primary/10 rounded-lg transition-colors"
@@ -257,7 +257,7 @@ export default function ContactSection() {
             {/* Map or Additional Info */}
             <div className="glass-card p-6 h-[200px] flex items-center justify-center">
               <p className="text-center text-terminal-text-dim">
-                Available for remote work and collaborations worldwide
+                Available for internships , remote work and collaborations worldwide
               </p>
             </div>
           </motion.div>
