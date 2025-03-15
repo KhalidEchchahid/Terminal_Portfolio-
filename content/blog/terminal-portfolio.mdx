@@ -7,28 +7,15 @@ tags: ["Portfolio", "Terminal", "Next.js", "React", "Web Development"]
 featured: true
 ---
 
-import Image from "next/image";
-import { CodeBlock } from "@/components/CodeBlock";
-import { TerminalDemo } from "@/components/TerminalDemo";
-import { Callout } from "@/components/Callout";
-
 # Building My Terminal Portfolio: Where Code Meets Creativity
 
 Ever wondered what happens when a software engineer gets tired of traditional portfolios? You get a fully interactive terminal website! That's exactly what I built, and here's the story behind it.
 
 ## Why a Terminal?
 
-As a developer, I live in the command line. It's where I feel most at home, typing away commands that make my computer dance. When it came time to create a portfolio that truly represented _me_, the choice was obvious.
+As a developer, I live in the command line. It's where I feel most at home, typing away commands that make my computer dance. When it came time to create a portfolio that truly represented *me*, the choice was obvious.
 
-I wanted visitors to experience not just what I've built, but _how_ I think. A terminal interface perfectly captures that blend of technical precision and creative problem-solving that defines my approach to software engineering.
-
-<Image
-  src="/images/terminal-inspiration.jpg"
-  alt="My actual terminal setup that inspired the portfolio"
-  width={800}
-  height={450}
-  className="rounded-lg my-6"
-/>
+I wanted visitors to experience not just what I've built, but *how* I think. A terminal interface perfectly captures that blend of technical precision and creative problem-solving that defines my approach to software engineering.
 
 ## From Idea to Reality
 
@@ -41,14 +28,14 @@ I built the portfolio using Next.js, React, and Tailwind CSS. The terminal itsel
 
 Here's a peek at the heart of the terminal - the command processor:
 
-<CodeBlock language="javascript">
-  {`const processCommand = (command) => {
+```javascript
+const processCommand = (command) => {
   const [cmd, ...args] = command.toLowerCase().trim().split(' ');
   
   // Navigation commands
   if (["home", "about", "skills", "projects"].includes(cmd)) {
     setActiveSection(cmd);
-    return \`Opening \${cmd} section...\`;
+    return `Opening ${cmd} section...`;
   }
   
   // Fun commands
@@ -66,13 +53,11 @@ Here's a peek at the heart of the terminal - the command processor:
   }
   
   // Command not found
-  return \`Command not found: \${command}. Type 'help' for available commands.\`;
-};`}
-</CodeBlock>
+  return `Command not found: ${command}. Type 'help' for available commands.`;
+};
+```
 
 This simple function is what powers the entire terminal experience - parsing user input, determining the appropriate action, and returning the result.
-
-<TerminalDemo />
 
 ## Cool Features I'm Proud Of
 
@@ -83,11 +68,6 @@ Navigate through a virtual file system using commands like `cd`, `ls`, and `cat`
 ### Mobile Command Interface
 
 For touch users, there's a special command bar that appears only on mobile devices, making the experience smooth across all devices. I knew that typing commands on phones would be a pain, so I added tap-friendly shortcuts.
-
-<Callout type="tip">
-  Try visiting the site on your phone! The command interface automatically
-  adapts to touch input.
-</Callout>
 
 ### Fun Easter Eggs
 
@@ -138,11 +118,4 @@ Thanks for reading about my digital playground. I hope you'll explore the termin
 
 Now, if you'll excuse me, I have a few more commands to implement...
 
-<Callout type="info">
-  Want to check out the code or contribute? You can find the project on GitHub:
-  [github.com/username/terminal-portfolio](https://github.com/username/terminal-portfolio)
-</Callout>
-
-export default ({ children }) => (
-  <BlogLayout meta={frontMatter}>{children}</BlogLayout>
-);
+Check out the code and contribute to this project on GitHub: [github.com/username/terminal-portfolio](https://github.com/username/terminal-portfolio)
