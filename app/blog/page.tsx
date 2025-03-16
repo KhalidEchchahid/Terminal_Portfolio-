@@ -8,6 +8,7 @@ import FeaturedPost from "@/components/blog/featured-post"
 import NewsletterSignup from "@/components/blog/newsletter-signup"
 import { Separator } from "@/components/ui/separator"
 import { JsonLd } from "@/components/seo/json-ld"
+import { PortfolioButton } from "@/components/portfolio-button"
 
 export const metadata: Metadata = {
   title: "Blog | Khalid Echchahid - Moroccan Software Engineer",
@@ -115,6 +116,8 @@ export default function BlogPage() {
     <>
       <JsonLd data={jsonLd} />
       <div className="min-h-screen bg-terminal-bg text-terminal-text">
+      <PortfolioButton position="bottom-right" />
+
         <div className="container mx-auto px-4 py-16">
           <header className="mb-12">
             <h1 className="text-3xl md:text-4xl font-bold text-terminal-green mb-4">Khalid Echchahid&#39;s Blog</h1>

@@ -29,6 +29,7 @@ import ShareButtons from "@/components/blog/share-buttons";
 import type { BlogPost } from "@/lib/mdx";
 import Comments from "@/components/blog/comments";
 import { toast } from "sonner";
+import { PortfolioButton } from "@/components/portfolio-button";
 
 interface BlogPostClientProps {
   post: BlogPost;
@@ -72,6 +73,7 @@ export default function BlogPostClient({
   return (
     <div className="min-h-screen bg-terminal-bg text-terminal-text">
       <div className="container mx-auto px-4 py-16">
+      <PortfolioButton position="bottom-right" />
         <div className="max-w-4xl mx-auto">
           {/* Breadcrumb */}
           <div className="mb-8">

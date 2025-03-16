@@ -1,4 +1,5 @@
 import ModernPortfolio from "@/components/3d/modern-poertfolio"
+import { PortfolioButton } from "@/components/portfolio-button"
 import { JsonLd } from "@/components/seo/json-ld"
 import type { Metadata } from "next"
 
@@ -37,6 +38,7 @@ export default function PortfolioPage() {
   return (
     <>
       <JsonLd data={jsonLd} />
+      <PortfolioButton position="bottom-left" label="Main Portfolio" showAfterScroll={false} />
       <ModernPortfolio />
     </>
   )
